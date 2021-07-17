@@ -124,4 +124,9 @@ public class Huesped extends Persona {
 
 	}
 
+	public TarjetaCredito getTarjeta() {
+		return this.tarjeta;
+	}
+
+
 }

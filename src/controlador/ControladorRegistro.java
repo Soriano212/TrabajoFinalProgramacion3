@@ -5,9 +5,12 @@ import vista.VentanaListaPersonas;
 
 import java.awt.event.*;
 import java.time.*;
+import java.time.temporal.TemporalField;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
+import modelo.Huesped;
 import modelo.ManejoHuespedes;
 
 public class ControladorRegistro implements ActionListener{
@@ -15,6 +18,9 @@ public class ControladorRegistro implements ActionListener{
     private Registro vista;
     private ManejoHuespedes manejo;
     private VentanaListaPersonas vistaLista;
+    private DefaultTableModel modelTabla;
+    private ControladorTeclado soloNumeros;
+    private ControladorTeclado soloIden;
 
     public ControladorRegistro(Registro vista){
         this.vista = vista;
@@ -26,11 +32,12 @@ public class ControladorRegistro implements ActionListener{
         vista.btnLimpiar.addActionListener(this);
         vista.btnModificar.addActionListener(this);
         vista.btnListar.addActionListener(this);
+        vistaLista.btnCambiar.addActionListener(this);
 
-        ControladorTeclado soloNumeros = new ControladorTeclado(ControladorTeclado.tipo.Numeros);
+        soloNumeros = new ControladorTeclado(ControladorTeclado.tipo.Numeros);
         ControladorTeclado soloLetras = new ControladorTeclado(ControladorTeclado.tipo.Letras);
         ControladorTeclado soloTexto = new ControladorTeclado(ControladorTeclado.tipo.Texto);
-        ControladorTeclado soloIden = new ControladorTeclado(ControladorTeclado.tipo.Iden);
+        soloIden = new ControladorTeclado(ControladorTeclado.tipo.Iden);
 
         //Pone a la escucha a los TextField con KeyListener
         vista.textFieldAnioBan.addKeyListener(soloNumeros);
@@ -48,6 +55,22 @@ public class ControladorRegistro implements ActionListener{
         vista.textFieldNumTar.addKeyListener(soloNumeros);
         vista.textFieldProf.addKeyListener(soloLetras);
 
+        vistaLista.textAnio.addKeyListener(soloNumeros);
+        vistaLista.textMes.addKeyListener(soloNumeros);
+        vistaLista.textDia.addKeyListener(soloNumeros);
+
+    }
+
+    public void actializarTabla() {
+        String col[] = {"Identificacion", "Nombres", "Apellidos"};
+
+        String data[][] = manejo.getMatrizAfiliados();
+        modelTabla = new DefaultTableModel(data, col);
+        vistaLista.tableAfiliados.setModel(modelTabla);
+
+        data = manejo.getMatrizNoAfiliados();
+        modelTabla = new DefaultTableModel(data, col);
+        vistaLista.tableNoAfiliados.setModel(modelTabla);
     }
 
     public boolean agregarModificar(boolean agregar){
@@ -117,29 +140,57 @@ public class ControladorRegistro implements ActionListener{
         vista.rdbtnNo.setSelected(true);
     }
 
+    public boolean cargarDatos(String iden){
+        Huesped hues = manejo.getHuesped(iden);
+        
+        if(hues != null){
+            vista.textFieldAnioBan.setText(hues.getTarjeta().getFechaCaducidad().getYear()+"");
+            vista.textFieldAnioCli.setText(hues.getFechaNacimiento().getYear()+"");
+            vista.textFieldApellidos.setText(hues.getApellido());
+            vista.textFieldBanco.setText(hues.getTarjeta().getBancoEmisor());
+            vista.textFieldCell.setText(hues.getTelefonoCelular());
+            vista.textFieldDiaCli.setText(hues.getFechaNacimiento().getDayOfMonth()+"");
+            vista.textFieldDirec.setText(hues.getDireccionOrigen());
+            vista.textFieldFijo.setText(hues.getTelefonoFijo());
+            vista.textFieldIden.setText(hues.getIdentificacion());
+            vista.textFieldMesBan.setText(hues.getTarjeta().getFechaCaducidad().getMonthValue()+"");
+            vista.textFieldMesCli.setText(hues.getFechaNacimiento().getMonthValue()+"");;
+            vista.textFieldNombres.setText(hues.getNombre());
+            vista.textFieldNumTar.setText(hues.getTarjeta().getNumeroTarjeta());
+            vista.textFieldProf.setText(hues.getProfesion());
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         
         if(e.getSource()== vista.btnRegistrar){
             if(agregarModificar(true)){
                 JOptionPane.showMessageDialog(null, "Huesped agregado.");
+                limpiar();
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error al agregar, verifique los campos de texto.");
             }
         }
-
         if(e.getSource()== vista.btnVer){
-
+            if(cargarDatos(vista.textFieldIden.getText())){
+                JOptionPane.showMessageDialog(null, "Datos Cargados.");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error no se encontraron los datos.");
+            }
         }
-
         if(e.getSource()== vista.btnLimpiar){
-
+            limpiar();
         }
-
         if(e.getSource()== vista.btnModificar){
             if(agregarModificar(false)){
                 JOptionPane.showMessageDialog(null, "Huesped modificado.");
+                limpiar();
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error al modificar, verifique los campos de texto.");
@@ -148,7 +199,21 @@ public class ControladorRegistro implements ActionListener{
         if(e.getSource()== vista.btnListar){
             vistaLista.setVisible(true);
         }
-        
+        if(e.getSource() == vistaLista.btnCambiar){
+            String iden = vista.textFieldIden.getText();
+            int dia = Integer.parseInt(vistaLista.textDia.getText());
+            int mes = Integer.parseInt(vistaLista.textMes.getText());
+            int anio = Integer.parseInt(vistaLista.textAnio.getText());
+            LocalDate fecha = LocalDate.of(anio, mes, dia);
+
+            if(manejo.modificarAfiliacion(fecha, iden)){
+                JOptionPane.showMessageDialog(null, "Fehca modificada.");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error al modificar fecha, verifique los campos de texto.");
+            }
+        }
+        actializarTabla();
     }
 
 }

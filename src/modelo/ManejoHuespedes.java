@@ -70,14 +70,15 @@ public class ManejoHuespedes {
         return -1;
     }
 
-    public Huesped getCliente(boolean afil, String iden){//
+    public Huesped getHuesped(String iden){//
 
-        int pos = buscar(afil, iden);
+        int pos;
 
-        if(pos != -1){
-            if(afil) return listaAfiliados.get(pos);
-            if(!afil) return listaNoAfiliados.get(pos);
-        }
+        pos = buscar(true, iden);
+        if(pos != -1) return listaAfiliados.get(pos);
+
+        pos = buscar(false, iden);
+        if(pos != -1) return listaNoAfiliados.get(pos);
         
         return null;
 
@@ -147,6 +148,16 @@ public class ManejoHuespedes {
         }
         return false;
 
+    }
+
+    public boolean modificarAfiliacion(LocalDate fecha, String iden){
+        int pos = buscar(true, iden);
+
+        if(pos != -1){
+            listaAfiliados.get(pos).setFechaAfiliacion(fecha);
+            return true;
+        }
+        return false;
     }
 
 }
