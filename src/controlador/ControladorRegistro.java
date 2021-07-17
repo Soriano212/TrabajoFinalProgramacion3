@@ -164,19 +164,64 @@ public class ControladorRegistro implements ActionListener{
         return false;
     }
 
+    public String verificacion(){
+        String retorno = "Corregir :";
+        boolean ced = false;
+        if((String)vista.comboBoxIden.getSelectedItem() == "Cedula") ced = true;
+
+        if(!Huesped.Validacion(vista.textFieldIden.getText(), ced)) retorno = retorno + " Identificacion.";
+        if(vista.textFieldNombres.getText().length() < 3) retorno = retorno + " Nombres.";
+        if(vista.textFieldApellidos.getText().length() < 3) retorno = retorno + " Apellidos.";
+        if(vista.textFieldCell.getText().length() < 3) retorno = retorno + " Celular.";
+        if(vista.textFieldDirec.getText().length() < 3) retorno = retorno + " Direccion.";
+        if(vista.textFieldBanco.getText().length() < 3) retorno = retorno + " Banco.";
+        if(vista.textFieldNumTar.getText().length() < 8) retorno = retorno + " Tarjeta.";
+
+        try{
+            int diacli = Integer.parseInt(vista.textFieldDiaCli.getText());
+            int mescli = Integer.parseInt(vista.textFieldMesCli.getText());
+            int aniocli = Integer.parseInt(vista.textFieldAnioCli.getText());
+            LocalDate.of(aniocli, mescli, diacli);
+        }
+        catch(DateTimeException ex){
+            retorno = retorno + " Fecha Nacimiento.";
+        }
+
+        try{
+            int mesban = Integer.parseInt(vista.textFieldMesBan.getText());
+            int anioban = Integer.parseInt(vista.textFieldAnioBan.getText());
+            LocalDate.of(anioban,mesban,1);
+        }
+        catch(DateTimeException ex){
+            retorno = retorno + " Fecha Caducidad.";
+        }
+
+        if(!retorno.equals("Corregir :")) return retorno;
+        return null;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(e.getSource()== vista.btnRegistrar){
-            if(agregarModificar(true)){
-                JOptionPane.showMessageDialog(null, "Huesped agregado.");
-                limpiar();
+        if(e.getSource() == vista.btnRegistrar){
+            String val = verificacion();
+            String iden = vista.textFieldIden.getText();
+
+            if(manejo.buscar(true,iden) == -1 && manejo.buscar(false,iden) == -1){
+                if(val != null){
+                    agregarModificar(true);
+                    JOptionPane.showMessageDialog(null, "Huesped agregado.");
+                    limpiar();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error al agregar, "+val);
+                }
             }
             else{
-                JOptionPane.showMessageDialog(null, "Error al agregar, verifique los campos de texto.");
+                JOptionPane.showMessageDialog(null, "Error al agregar, ya exite un huesped registrado con esa ID.");
             }
         }
-        if(e.getSource()== vista.btnVer){
+        if(e.getSource() == vista.btnVer){
             if(cargarDatos(vista.textFieldIden.getText())){
                 JOptionPane.showMessageDialog(null, "Datos Cargados.");
             }
@@ -184,35 +229,55 @@ public class ControladorRegistro implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Error no se encontraron los datos.");
             }
         }
-        if(e.getSource()== vista.btnLimpiar){
+        if(e.getSource() == vista.btnLimpiar){
             limpiar();
         }
-        if(e.getSource()== vista.btnModificar){
-            if(agregarModificar(false)){
-                JOptionPane.showMessageDialog(null, "Huesped modificado.");
-                limpiar();
+        if(e.getSource() == vista.btnModificar){
+            String val =verificacion();
+            if(val != null){
+                if(agregarModificar(false)){
+                    JOptionPane.showMessageDialog(null, "Huesped modificado.");
+                    limpiar();
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error al modificar, No se encontro el registro.");
+                }
             }
             else{
-                JOptionPane.showMessageDialog(null, "Error al modificar, verifique los campos de texto.");
+                JOptionPane.showMessageDialog(null, "Error al modificar, "+val);
             }
         }
-        if(e.getSource()== vista.btnListar){
+        if(e.getSource() == vista.btnListar){
             vistaLista.setVisible(true);
         }
         if(e.getSource() == vistaLista.btnCambiar){
             String iden = vista.textFieldIden.getText();
+            boolean val = true;
+            LocalDate fecha = null;
+
             int dia = Integer.parseInt(vistaLista.textDia.getText());
             int mes = Integer.parseInt(vistaLista.textMes.getText());
             int anio = Integer.parseInt(vistaLista.textAnio.getText());
-            LocalDate fecha = LocalDate.of(anio, mes, dia);
+            try{
+                fecha = LocalDate.of(anio, mes, dia);
+                val =true;
+            }
+            catch(DateTimeException timeE){
+                val = false;
+                JOptionPane.showMessageDialog(null, "Error al modificar fecha, fecha invalida.");
+            }
 
-            if(manejo.modificarAfiliacion(fecha, iden)){
-                JOptionPane.showMessageDialog(null, "Fehca modificada.");
+            if(val){
+                if(manejo.modificarAfiliacion(fecha, iden)){
+                    JOptionPane.showMessageDialog(null, "Fehca modificada.");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error al modificar fecha, verifique los campos de texto.");
+                }
             }
-            else{
-                JOptionPane.showMessageDialog(null, "Error al modificar fecha, verifique los campos de texto.");
-            }
+            
         }
+
         actializarTabla();
     }
 
