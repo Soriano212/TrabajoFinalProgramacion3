@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.*;
+import java.time.*;
 
 public class ManejoHuespedes {
     
@@ -21,9 +22,9 @@ public class ManejoHuespedes {
     }
     
     //Agrega a la lista segun afil si es afiliado o no afiliado
-    public void addValor(String identificacion, String nombre, String apellido, Date fechaNacimiento, String telefonoCelular, 
-    String telefonoFijo, String direccionOrigen, String profesion, String banco, String numeroTarjeta, Date fechaCaducidad,
-    boolean afil, Date fechaAfiliacion){
+    public void addValor(String identificacion, String nombre, String apellido, LocalDate fechaNacimiento, String telefonoCelular, 
+    String telefonoFijo, String direccionOrigen, String profesion, String banco, String numeroTarjeta, LocalDate fechaCaducidad,
+    boolean afil, LocalDate fechaAfiliacion){
 
         if(afil){
             Afiliado clienteA = new Afiliado(identificacion, nombre, apellido, fechaNacimiento, telefonoCelular, direccionOrigen, fechaAfiliacion);
@@ -121,8 +122,8 @@ public class ManejoHuespedes {
         return false;
     }
 
-    public boolean modificarHuesped(String identificacion, String nombre, String apellido, Date fechaNacimiento, String telefonoCelular, 
-    String telefonoFijo, String direccionOrigen, String profesion, String banco, String numeroTarjeta, Date fechaCaducidad, boolean afil){
+    public boolean modificarHuesped(String identificacion, String nombre, String apellido, LocalDate fechaNacimiento, String telefonoCelular, 
+    String telefonoFijo, String direccionOrigen, String profesion, String banco, String numeroTarjeta, LocalDate fechaCaducidad, boolean afil){
 
         int pos = buscar(afil, identificacion);
 

@@ -2,13 +2,18 @@ package controlador;
 
 import vista.Registro;
 import java.awt.event.*;
+import java.time.*;
+
+import modelo.ManejoHuespedes;
 
 public class ControladorRegistro implements ActionListener{
 
     private Registro vista;
+    private ManejoHuespedes manejo;
 
     public ControladorRegistro(Registro vista){
         this.vista = vista;
+        this.manejo = ManejoHuespedes.getListas();
 
         //Pone a la escucha a los botones
         vista.btnRegistrar.addActionListener(this);
@@ -39,22 +44,35 @@ public class ControladorRegistro implements ActionListener{
 
     }
 
+    public boolean agregarModificar(boolean agregar){
+
+        String iden = vista.textFieldIden.getText();
+        String nom = vista.textFieldNombres.getText();
+        String ape = vista.textFieldApellidos.getText();
+        String prof = vista.textFieldProf.getText();
+        String cell = vista.textFieldCell.getText();
+        String fijo = vista.textFieldFijo.getText();
+        String dir = vista.textFieldDirec.getText();
+        String banco = vista.textFieldBanco.getText();
+        String numtar = vista.textFieldNumTar.getText();
+        
+        int diacli = Integer.parseInt(vista.textFieldDiaCli.getText());
+        int mescli = Integer.parseInt(vista.textFieldMesCli.getText());
+        int aniocli = Integer.parseInt(vista.textFieldAnioCli.getText());
+        LocalDate fecNac = LocalDate.of(aniocli, mescli, diacli);
+
+        int mesban = Integer.parseInt(vista.textFieldMesBan.getText());
+        int anioban = Integer.parseInt(vista.textFieldAnioBan.getText());
+        LocalDate fecCad = LocalDate.of(anioban,mesban,0);
+
+        if(agregar){
+            manejo.addValor(iden, nom, ape, fecNac, cell, fijo, dir, prof, banco, numtar, fecCad, afil, fecAf);
+        }
+
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-            String iden = vista.textFieldIden.getText();
-            String nom = vista.textFieldNombres.getText();
-            String ape = vista.textFieldApellidos.getText();
-            String prof = vista.textFieldProf.getText();
-            String diacli = vista.textFieldDiaCli.getText();
-            String cell = vista.textFieldCell.getText();
-            String fijo = vista.textFieldFijo.getText();
-            String dir = vista.textFieldDirec.getText();
-            String mescli = vista.textFieldMesCli.getText();
-            String aniocli = vista.textFieldAnioCli.getText();
-            String banco = vista.textFieldBanco.getText();
-            String mesban = vista.textFieldMesBan.getText();
-            String anioban = vista.textFieldAnioBan.getText();
-            String numtar = vista.textFieldNumTar.getText();
         
         if(e.getSource()== vista.btnRegistrar){
             
@@ -84,18 +102,6 @@ public class ControladorRegistro implements ActionListener{
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
         
     }
 

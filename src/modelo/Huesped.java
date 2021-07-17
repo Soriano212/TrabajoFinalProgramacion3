@@ -1,17 +1,17 @@
 package modelo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Huesped extends Persona {
 
 	private String profesion;
-	private Date fechaNacimiento;
+	private LocalDate fechaNacimiento;
 	private String telefonoCelular;
 	private String telefonoFijo;
 	private String direccionOrigen;
 	private TarjetaCredito tarjeta;
 
-	public Huesped(String identificacion, String apellido, String nombre, Date fechaNacimiento, String telefonoCelular, String direccionOrigen) {//Constructor
+	public Huesped(String identificacion, String apellido, String nombre, LocalDate fechaNacimiento, String telefonoCelular, String direccionOrigen) {//Constructor
 
 		super(identificacion, apellido, nombre);
 
@@ -73,11 +73,11 @@ public class Huesped extends Persona {
 		this.profesion = profesion;
 	}
 
-	public Date getFechaNacimiento() {
+	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
@@ -116,7 +116,7 @@ public class Huesped extends Persona {
 
 	}
 
-	public void setTarjeta(String ban, String num, Date fecha){
+	public void setTarjeta(String ban, String num, LocalDate fecha){
 
 		tarjeta.setBancoEmisor(ban);
 		tarjeta.setFechaCaducidad(fecha);

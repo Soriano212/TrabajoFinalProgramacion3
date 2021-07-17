@@ -1,14 +1,14 @@
 package modelo;
 
-import java.util.Date;
+import java.time.*;
 
 public class TarjetaCredito {
 
     private String bancoEmisor;
     private String numeroTarjeta;
-    private Date fechaCaducidad;
+    private LocalDate fechaCaducidad;
 
-    public TarjetaCredito(String ban, String num, Date fec){//Constructor
+    public TarjetaCredito(String ban, String num, LocalDate fec){//Constructor
 
         this.bancoEmisor = ban;
         this.numeroTarjeta = num;
@@ -28,7 +28,7 @@ public class TarjetaCredito {
         this.numeroTarjeta = num;
     }
 
-    public void setFechaCaducidad(Date fec){
+    public void setFechaCaducidad(LocalDate fec){
         this.fechaCaducidad = fec;
     }
     
@@ -40,7 +40,7 @@ public class TarjetaCredito {
         return this.numeroTarjeta;
     }
 
-    public Date getFechaCaducidad() {
+    public LocalDate getFechaCaducidad() {
         return this.fechaCaducidad;
     }
 
