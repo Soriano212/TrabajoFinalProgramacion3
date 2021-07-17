@@ -103,4 +103,15 @@ public class Huesped extends Persona {
 		this.direccionOrigen = direccionOrigen;
 	}
 
+	public String[] getDatos(){
+
+		String vector[] = new String[3];
+		vector[0] = this.getIdentificacion();
+		vector[1] = this.getNombre();
+		vector[2] = this.getApellido();
+
+		return vector;
+
+	}
+
 }

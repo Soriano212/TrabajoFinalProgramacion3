@@ -60,6 +60,45 @@ public class ManejoHuespedes {
         return -1;
     }
 
+    public Huesped getCliente(boolean afil, String iden){
 
+        int pos = buscar(afil, iden);
+
+        if(pos != -1){
+            if(afil) return listaAfiliados.get(pos);
+            if(!afil) return listaNoAfiliados.get(pos);
+        }
+        
+        return null;
+
+    }
+
+    public String[][] getMatrizAfiliados(){
+
+        String matriz[][] = new String[listaAfiliados.size()][3];
+        int cont = 0;
+
+        for (Afiliado cliente : listaAfiliados) {
+            String[] datos = cliente.getDatos();
+            matriz[cont] = datos;
+            cont ++;
+        }
+
+        return matriz;
+    }
+
+    public String[][] getMatrizNoAfiliados(){
+
+        String matriz[][] = new String[listaNoAfiliados.size()][3];
+        int cont = 0;
+
+        for (NoAfiliado cliente : listaNoAfiliados) {
+            String[] datos = cliente.getDatos();
+            matriz[cont] = datos;
+            cont ++;
+        }
+
+        return matriz;
+    }
 
 }
