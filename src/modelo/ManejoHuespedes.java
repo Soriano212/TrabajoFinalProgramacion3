@@ -21,15 +21,24 @@ public class ManejoHuespedes {
     }
     
     //Agrega a la lista segun afil si es afiliado o no afiliado
-    public void addValor(String identificacion, String nombre, String apellido, Date fechaNacimiento,
-    String telefonoCelular, String direccionOrigen, Date fechaAfiliacion, boolean afil){
+    public void addValor(String identificacion, String nombre, String apellido, Date fechaNacimiento, String telefonoCelular, 
+    String telefonoFijo, String direccionOrigen, String profesion, String banco, String numeroTarjeta, Date fechaCaducidad,
+    boolean afil, Date fechaAfiliacion){
 
         if(afil){
             Afiliado clienteA = new Afiliado(identificacion, nombre, apellido, fechaNacimiento, telefonoCelular, direccionOrigen, fechaAfiliacion);
+            clienteA.setProfesion(profesion);
+            clienteA.setTelefonoFijo(telefonoFijo);
+            clienteA.setTarjeta(banco, numeroTarjeta, fechaCaducidad);
+
             listaAfiliados.add(clienteA);
         }
         else{
             NoAfiliado clienteB = new NoAfiliado(identificacion, nombre, apellido, fechaNacimiento, telefonoCelular, direccionOrigen);
+            clienteB.setProfesion(profesion);
+            clienteB.setTelefonoFijo(telefonoFijo);
+            clienteB.setTarjeta(banco, numeroTarjeta, fechaCaducidad);
+
             listaNoAfiliados.add(clienteB);
         }
 
@@ -60,7 +69,7 @@ public class ManejoHuespedes {
         return -1;
     }
 
-    public Huesped getCliente(boolean afil, String iden){
+    public Huesped getCliente(boolean afil, String iden){//
 
         int pos = buscar(afil, iden);
 
@@ -73,7 +82,7 @@ public class ManejoHuespedes {
 
     }
 
-    public String[][] getMatrizAfiliados(){
+    public String[][] getMatrizAfiliados(){//Obtiene datos en una matrix de los afiliados
 
         String matriz[][] = new String[listaAfiliados.size()][3];
         int cont = 0;
@@ -87,7 +96,7 @@ public class ManejoHuespedes {
         return matriz;
     }
 
-    public String[][] getMatrizNoAfiliados(){
+    public String[][] getMatrizNoAfiliados(){//Obtiene datos en una matrix de los no afiliados
 
         String matriz[][] = new String[listaNoAfiliados.size()][3];
         int cont = 0;
@@ -99,6 +108,45 @@ public class ManejoHuespedes {
         }
 
         return matriz;
+    }
+
+
+    public boolean eliminarHuesped(boolean afil, String iden){//Elimina en la lista segun afil si es afiliado o no afiliado
+
+        int pos = buscar(afil, iden);
+        if(pos != -1){
+            if(afil) listaAfiliados.remove(pos);
+            if(!afil) listaNoAfiliados.remove(pos);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean modificarHuesped(String identificacion, String nombre, String apellido, Date fechaNacimiento, String telefonoCelular, 
+    String telefonoFijo, String direccionOrigen, String profesion, String banco, String numeroTarjeta, Date fechaCaducidad, boolean afil){
+
+        int pos = buscar(afil, identificacion);
+
+        if(pos != -1){
+            Huesped cliente;
+            if(afil){
+                cliente = listaAfiliados.get(pos);
+            }else{
+                cliente = listaNoAfiliados.get(pos);
+            }
+            cliente.setApellido(apellido);
+            cliente.setNombre(nombre);
+            cliente.setDireccionOrigen(direccionOrigen);
+            cliente.setFechaNacimiento(fechaNacimiento);
+            cliente.setTelefonoCelular(telefonoCelular);
+            cliente.setTelefonoFijo(telefonoFijo);
+            cliente.setTarjeta(banco, numeroTarjeta, fechaCaducidad);
+            cliente.setProfesion(profesion);
+            
+            return true;
+        }
+        return false;
+
     }
 
 }
