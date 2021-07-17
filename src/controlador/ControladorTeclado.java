@@ -12,7 +12,7 @@ public class ControladorTeclado implements KeyListener{
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(KeyEvent e) {//Solo selecciona unas teclas en especifico
         
         int eve = e.getKeyChar();
 

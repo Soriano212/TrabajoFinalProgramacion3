@@ -11,8 +11,7 @@ public class Huesped extends Persona {
 	private String direccionOrigen;
 	private TarjetaCredito tarjeta;
 
-	public Huesped(String identificacion, String apellido, String nombre, Date fechaNacimiento,
-			String telefonoCelular, String direccionOrigen) {
+	public Huesped(String identificacion, String apellido, String nombre, Date fechaNacimiento, String telefonoCelular, String direccionOrigen) {//Constructor
 
 		super(identificacion, apellido, nombre);
 
@@ -22,7 +21,7 @@ public class Huesped extends Persona {
 		this.tarjeta = new TarjetaCredito();
 
 	}
-
+//Validacion de cedula
 	public static boolean Validacion(String iden, boolean tipoCed) {
 
 		int largo = iden.length();
@@ -65,6 +64,7 @@ public class Huesped extends Persona {
 
 	}
 
+//getters y setters
 	public String getProfesion() {
 		return profesion;
 	}
@@ -121,7 +121,7 @@ public class Huesped extends Persona {
 		tarjeta.setBancoEmisor(ban);
 		tarjeta.setFechaCaducidad(fecha);
 		tarjeta.setNumeroTarjeta(num);
-		
+
 	}
 
 }

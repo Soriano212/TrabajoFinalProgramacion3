@@ -4,7 +4,7 @@ public class Propietario extends Persona{
 
 	private double porcentaje;
 	
-	public Propietario(String identificacion, String nombre, String apellido, double porcentaje){
+	public Propietario(String identificacion, String nombre, String apellido, double porcentaje){//constructor
 
 		super(identificacion, apellido, nombre);
 
@@ -16,7 +16,7 @@ public class Propietario extends Persona{
 		}
 
 	}
-
+//Getters y setters
 	public double getPorcentaje(){
 		return porcentaje;
 	}

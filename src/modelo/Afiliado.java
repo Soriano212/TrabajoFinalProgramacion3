@@ -8,9 +8,8 @@ public class Afiliado extends Huesped{
     private double descuento;
     private boolean usoBonoAfiliado;
 
-    
-    public Afiliado(String identificacion, String nombre, String apellido, Date fechaNacimiento,
-    String telefonoCelular, String direccionOrigen, Date fechaAfiliacion){
+    //constructor
+    public Afiliado(String identificacion, String nombre, String apellido, Date fechaNacimiento, String telefonoCelular, String direccionOrigen, Date fechaAfiliacion){
 
 		super(identificacion, apellido, nombre, fechaNacimiento, telefonoCelular, direccionOrigen);
 
