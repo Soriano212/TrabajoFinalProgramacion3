@@ -2,16 +2,17 @@ package modelo;
 
 public class Persona {
 
-	private String identificacion;
+	private String identificacion;//variables
 	private String apellido;
 	private String nombre;
 
-	public Persona(String identificacion, String apellido, String nombre) {
+	public Persona(String identificacion, String apellido, String nombre) {//Constructor
 		this.identificacion = identificacion;
 		this.apellido = apellido;
 		this.nombre = nombre;
 	}
 
+	//getters y setters
 	public String getApellido() {
 		return apellido;
 	}

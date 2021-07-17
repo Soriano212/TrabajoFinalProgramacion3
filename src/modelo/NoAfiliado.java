@@ -4,10 +4,9 @@ import java.util.Date;
 
 public class NoAfiliado extends Huesped{
     
-    public NoAfiliado(String identificacion, String nombre, String apellido, Date fechaNacimiento,
-    String telefonoCelular, String direccionOrigen){
+    public NoAfiliado(String identificacion, String nombre, String apellido, Date fechaNacimiento, String telefonoCelular, String direccionOrigen){//Constructor
 
-		super(identificacion, apellido, nombre, fechaNacimiento, telefonoCelular, direccionOrigen);
+        super(identificacion, apellido, nombre, fechaNacimiento, telefonoCelular, direccionOrigen);
         
     }
 
