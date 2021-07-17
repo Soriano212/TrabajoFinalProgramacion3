@@ -41,8 +41,61 @@ public class ControladorRegistro implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+            String iden = vista.textFieldIden.getText();
+            String nom = vista.textFieldNombres.getText();
+            String ape = vista.textFieldApellidos.getText();
+            String prof = vista.textFieldProf.getText();
+            String diacli = vista.textFieldDiaCli.getText();
+            String cell = vista.textFieldCell.getText();
+            String fijo = vista.textFieldFijo.getText();
+            String dir = vista.textFieldDirec.getText();
+            String mescli = vista.textFieldMesCli.getText();
+            String aniocli = vista.textFieldAnioCli.getText();
+            String banco = vista.textFieldBanco.getText();
+            String mesban = vista.textFieldMesBan.getText();
+            String anioban = vista.textFieldAnioBan.getText();
+            String numtar = vista.textFieldNumTar.getText();
         
-        
+        if(e.getSource()== vista.btnRegistrar){
+            
+            
+        }
+        if(e.getSource()== vista.btnVer){
+
+
+
+
+        }
+        if(e.getSource()== vista.btnLimpiar){
+            
+
+
+
+        }
+        if(e.getSource()== vista.btnModificar){
+            
+
+
+
+        }
+        if(e.getSource()== vista.btnListar){
+            
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         
     }
 

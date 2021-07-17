@@ -110,7 +110,6 @@ public class ManejoHuespedes {
         return matriz;
     }
 
-
     public boolean eliminarHuesped(boolean afil, String iden){//Elimina en la lista segun afil si es afiliado o no afiliado
 
         int pos = buscar(afil, iden);
@@ -142,7 +141,7 @@ public class ManejoHuespedes {
             cliente.setTelefonoFijo(telefonoFijo);
             cliente.setTarjeta(banco, numeroTarjeta, fechaCaducidad);
             cliente.setProfesion(profesion);
-            
+
             return true;
         }
         return false;
