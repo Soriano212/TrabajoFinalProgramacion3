@@ -104,12 +104,17 @@ public class ControladorRegistro implements ActionListener{
         vista.textFieldNombres.setText(null);
         vista.textFieldApellidos.setText(null);
         vista.textFieldProf.setText(null);
-        vista.textFieldCell.setText(null);+
+        vista.textFieldCell.setText(null);
         vista.textFieldFijo.setText(null);
         vista.textFieldDirec.setText(null);
         vista.textFieldBanco.setText(null);
         vista.textFieldNumTar.setText(null);
-        
+        vista.textFieldAnioBan.setText(null);
+        vista.textFieldAnioCli.setText(null);
+        vista.textFieldDiaCli.setText(null);
+        vista.textFieldMesBan.setText(null);
+        vista.textFieldMesCli.setText(null);
+        vista.rdbtnNo.setSelected(true);
     }
 
     @Override
@@ -141,7 +146,7 @@ public class ControladorRegistro implements ActionListener{
             }
         }
         if(e.getSource()== vista.btnListar){
-            
+            vistaLista.setVisible(true);
         }
         
     }

@@ -1,24 +1,9 @@
 package vista;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import java.awt.Font;
-import javax.swing.ImageIcon;
-import java.awt.Canvas;
-import java.awt.Color;
-import javax.swing.SwingConstants;
-import javax.swing.JRadioButton;
-import javax.swing.ButtonGroup;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTextField;
-import javax.swing.JLayeredPane;
-import java.awt.SystemColor;
 
 public class Ventana {
 
@@ -64,6 +49,7 @@ public class Ventana {
 		frame.setBounds(100, 100, 700, 735);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Administracion Hostal");
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 684, 696);
