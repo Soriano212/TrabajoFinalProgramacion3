@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import modelo.Huesped;
 import modelo.ManejoHuespedes;
 
-public class ControladorRegistro implements ActionListener{
+public class ControladorRegistro extends AdaptadorListener implements ActionListener{
 
     private Registro vista;
     private ManejoHuespedes manejo;
@@ -21,9 +21,9 @@ public class ControladorRegistro implements ActionListener{
     private ControladorTeclado soloNumeros;
     private ControladorTeclado soloIden;
 
-    public ControladorRegistro(Registro vista){
+    public ControladorRegistro(Registro vista, ManejoHuespedes manejo){
         this.vista = vista;
-        this.manejo = ManejoHuespedes.getListas();
+        this.manejo = manejo;
         this.vistaLista = new VentanaListaPersonas();
         this.vista.btnModificar.setEnabled(false);
         this.vista.lblEstado.setVisible(false);
@@ -61,6 +61,9 @@ public class ControladorRegistro implements ActionListener{
         vistaLista.textAnio.addKeyListener(soloNumeros);
         vistaLista.textMes.addKeyListener(soloNumeros);
         vistaLista.textDia.addKeyListener(soloNumeros);
+
+        vistaLista.tableAfiliados.addMouseListener(this);
+        vistaLista.tableNoAfiliados.addMouseListener(this);
 
         //manejo.addValor("0150440378", "Alberto", "Soriano", LocalDate.now(), "0969393695", null,
         //"Cuenca", "ING", "Pacifico", "012343212231321321", LocalDate.now(), false, null);
@@ -327,6 +330,32 @@ public class ControladorRegistro implements ActionListener{
         }
 
         actializarTabla();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(e.getSource() == vistaLista.tableAfiliados){
+            int seleccion = vistaLista.tableAfiliados.getSelectedRow();
+            cargarDatos((String)vistaLista.tableAfiliados.getValueAt(seleccion, 0));
+            vista.btnModificar.setEnabled(true);
+            vista.btnRegistrar.setEnabled(false);
+            vista.textFieldIden.setEditable(false);
+            vista.lblEstado.setVisible(true);
+            vista.chckbxEstado.setVisible(true);
+            vista.rdbtnNo.setEnabled(false);
+            vista.rdbtnSi.setEnabled(false);
+        }
+        if(e.getSource() == vistaLista.tableNoAfiliados){
+            int seleccion = vistaLista.tableNoAfiliados.getSelectedRow();
+            cargarDatos((String)vistaLista.tableNoAfiliados.getValueAt(seleccion, 0));
+            vista.btnModificar.setEnabled(true);
+            vista.btnRegistrar.setEnabled(false);
+            vista.textFieldIden.setEditable(false);
+            vista.lblEstado.setVisible(true);
+            vista.chckbxEstado.setVisible(true);
+            vista.rdbtnNo.setEnabled(false);
+            vista.rdbtnSi.setEnabled(false);
+        }
     }
 
 }

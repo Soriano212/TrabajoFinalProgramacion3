@@ -17,14 +17,13 @@ public class ManejoHuespedes implements Serializable{
         return instancia;
     }
 
-    public static ManejoHuespedes getListas(ManejoHuespedes hues){
-        if(instancia == null){
+    public static void Lectura(ManejoHuespedes hues){
+        if(hues != null){
             instancia = hues;
         }
-        return instancia;
     }
 
-    public ManejoHuespedes(){
+    private ManejoHuespedes(){
         this.listaAfiliados  = new ArrayList<Afiliado>();
         this.listaNoAfiliados  = new ArrayList<NoAfiliado>();
     }
