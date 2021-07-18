@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-public class Huesped extends Persona {
+public class Huesped extends Persona{
 
 	private String profesion;
 	private LocalDate fechaNacimiento;

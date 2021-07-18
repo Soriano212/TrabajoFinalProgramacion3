@@ -62,6 +62,9 @@ public class ControladorRegistro implements ActionListener{
         vistaLista.textMes.addKeyListener(soloNumeros);
         vistaLista.textDia.addKeyListener(soloNumeros);
 
+        //manejo.addValor("0150440378", "Alberto", "Soriano", LocalDate.now(), "0969393695", null,
+        //"Cuenca", "ING", "Pacifico", "012343212231321321", LocalDate.now(), false, null);
+
     }
 
     public void actializarTabla() {
@@ -125,6 +128,7 @@ public class ControladorRegistro implements ActionListener{
         }
         else{
             if(manejo.modificarHuesped(iden, nom, ape, fecNac, cell, fijo, dir, prof, banco, numtar, fecCad, afil)){
+                System.out.println(vista.chckbxEstado.isSelected());
                 if(vista.chckbxEstado.isSelected()) manejo.moverHuespedLista(iden, afil);
                 return true;
             }
@@ -248,6 +252,8 @@ public class ControladorRegistro implements ActionListener{
                 this.vista.textFieldIden.setEditable(false);
                 this.vista.lblEstado.setVisible(true);
                 this.vista.chckbxEstado.setVisible(true);
+                this.vista.rdbtnNo.setEnabled(false);
+                this.vista.rdbtnSi.setEnabled(false);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error no se encontraron los datos.");
@@ -260,6 +266,8 @@ public class ControladorRegistro implements ActionListener{
             this.vista.textFieldIden.setEditable(true);
             this.vista.lblEstado.setVisible(false);
             this.vista.chckbxEstado.setVisible(false);
+            this.vista.rdbtnNo.setEnabled(true);
+            this.vista.rdbtnSi.setEnabled(true);
         }
         if(e.getSource() == vista.btnModificar){
             String val =verificacion();
@@ -272,6 +280,8 @@ public class ControladorRegistro implements ActionListener{
                     this.vista.textFieldIden.setEditable(true);
                     this.vista.lblEstado.setVisible(false);
                     this.vista.chckbxEstado.setVisible(false);
+                    this.vista.rdbtnNo.setEnabled(true);
+                    this.vista.rdbtnSi.setEnabled(true);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Error al modificar, No se encontro el registro.");

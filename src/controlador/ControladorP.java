@@ -32,6 +32,9 @@ public class ControladorP extends WindowAdapter{
 		"Confirmación de cierre", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 		if (option == JOptionPane.YES_OPTION) {
+			if(!ManejoArchivos.EscribirDatosHuespedes(ManejoHuespedes.getListas())){
+				JOptionPane.showMessageDialog(null, "Error al guaras Huespedes");
+			}
 			System.exit(0);
 		}
 	}

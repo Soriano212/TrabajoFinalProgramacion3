@@ -24,7 +24,7 @@ public class ManejoHuespedes implements Serializable{
         return instancia;
     }
 
-    private ManejoHuespedes(){
+    public ManejoHuespedes(){
         this.listaAfiliados  = new ArrayList<Afiliado>();
         this.listaNoAfiliados  = new ArrayList<NoAfiliado>();
     }

@@ -1,8 +1,9 @@
 package modelo;
 
+import java.io.Serializable;
 import java.time.*;
 
-public class TarjetaCredito {
+public class TarjetaCredito implements Serializable{
 
     private String bancoEmisor;
     private String numeroTarjeta;
