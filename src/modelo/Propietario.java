@@ -2,28 +2,23 @@ package modelo;
 
 public class Propietario extends Persona{
 
-	private double porcentaje;
+	private int porcentaje;
 	
-	public Propietario(String identificacion, String nombre, String apellido, double porcentaje){//constructor
+	public Propietario(String identificacion, String nombre, String apellido){//constructor
 
 		super(identificacion, apellido, nombre);
 
-		if(porcentaje >= 0 && porcentaje <=1){
-			this.porcentaje = porcentaje;
-		}
-		else{
-			this.porcentaje = 0;
-		}
+		this.porcentaje = 0;
 
 	}
-//Getters y setters
-	public double getPorcentaje(){
+
+	public int getPorcentaje(){
 		return porcentaje;
 	}
 
-	public boolean setPorcentaje(double porcentaje){
+	public boolean setPorcentaje(int porcentaje){
 
-		if(porcentaje >= 0 && porcentaje <=1){
+		if(porcentaje >= 0 && porcentaje <=100){
 			this.porcentaje = porcentaje;
 			return true;
 		}

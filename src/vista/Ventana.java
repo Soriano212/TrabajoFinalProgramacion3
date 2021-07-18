@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 public class Ventana{
 
 	public JFrame frame;
+	
 	public Bienvenido panelBienvenido;
 	public Registro panelRegistro;
 	public Reserva panelReserva;
@@ -19,10 +20,12 @@ public class Ventana{
 	public Empresa panelEmpresa;
 	public Administrar panelAdministrar;
 	public Facturas panelFacturas;
+	
 	public JMenuItem mntmGuardar;
 	public JMenuItem mntmGuardarCopia;
 	public JMenuItem mntmLeerCopia;
 	public JMenuItem mntmMostrarFecha;
+	public JMenuItem mntmSalir;
 
 	/**
 	 * Launch the application.
@@ -79,6 +82,12 @@ public class Ventana{
 		
 		mntmMostrarFecha = new JMenuItem("Mostrar Ventana Fecha");
 		mnFecha.add(mntmMostrarFecha);
+		
+		JMenu mnNewMenu = new JMenu("Opciones");
+		menuBar.add(mnNewMenu);
+		
+		mntmSalir = new JMenuItem("Salir sin Guardar");
+		mnNewMenu.add(mntmSalir);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 684, 696);
