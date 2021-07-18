@@ -12,18 +12,34 @@ public class ControladorP extends WindowAdapter{
 
 	private Ventana ven;
 	private ControladorRegistro ctrlRegistro;
+	private static String nombreOficial = "./Data/";
+	private static String nombreCopia = "./DataCopia/";
 	
 	public ControladorP() {
-		leerArchivos();
+		ManejoArchivos.crearCarpetaData();
+		leerArchivos(nombreOficial);
 		ven = new Ventana();
 		ven.frame.addWindowListener(this);
 		ctrlRegistro = new ControladorRegistro(ven.panelRegistro);
 	}
 
-	public void leerArchivos(){
-		ManejoHuespedes huespedes = ManejoHuespedes.getListas(ManejoArchivos.leerDatosHuespedes());
+	public void Iniciar()
+    {
+        ven.frame.setLocationRelativeTo(null);
+    }
+
+	public void guardarArchivos(String nombre){
+		if(!ManejoArchivos.EscribirDatosHuespedes(ManejoHuespedes.getListas(), nombre+"Huespedes.dat")){
+			JOptionPane.showMessageDialog(null, "Error al guardar Huespedes");
+		}
+	}
+
+	public void leerArchivos(String nombre){
+		ManejoHuespedes huespedes = ManejoHuespedes.getListas(ManejoArchivos.leerDatosHuespedes(nombre+"Huespedes.dat"));
 		if(huespedes == null) JOptionPane.showMessageDialog(null, "Error al leer huespedes");;
 	}
+
+
 
 	@Override
 	public void windowClosing(WindowEvent e) {
@@ -32,9 +48,7 @@ public class ControladorP extends WindowAdapter{
 		"Confirmación de cierre", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 		if (option == JOptionPane.YES_OPTION) {
-			if(!ManejoArchivos.EscribirDatosHuespedes(ManejoHuespedes.getListas())){
-				JOptionPane.showMessageDialog(null, "Error al guaras Huespedes");
-			}
+			guardarArchivos(nombreOficial);
 			System.exit(0);
 		}
 	}

@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import java.awt.Font;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class Ventana{
 
@@ -16,6 +19,10 @@ public class Ventana{
 	public Empresa panelEmpresa;
 	public Administrar panelAdministrar;
 	public Facturas panelFacturas;
+	public JMenuItem mntmGuardar;
+	public JMenuItem mntmGuardarCopia;
+	public JMenuItem mntmLeerCopia;
+	public JMenuItem mntmMostrarFecha;
 
 	/**
 	 * Launch the application.
@@ -46,7 +53,7 @@ public class Ventana{
 	private void initialize() {
 		frame = new JFrame();
 		frame.setVisible(true);
-		frame.setBounds(100, 100, 700, 735);
+		frame.setBounds(100, 100, 700, 742);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Administracion Hostal");
@@ -82,6 +89,27 @@ public class Ventana{
 		
 		panelFacturas = new Facturas();
 		tabbedPane.addTab("Facturas", null, panelFacturas, null);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnArchivo = new JMenu("Archivo");
+		menuBar.add(mnArchivo);
+		
+		mntmGuardar = new JMenuItem("Guardar");
+		mnArchivo.add(mntmGuardar);
+		
+		mntmGuardarCopia = new JMenuItem("Guardar Copia");
+		mnArchivo.add(mntmGuardarCopia);
+		
+		mntmLeerCopia = new JMenuItem("Leer Copia");
+		mnArchivo.add(mntmLeerCopia);
+		
+		JMenu mnFecha = new JMenu("Fecha y Hora");
+		menuBar.add(mnFecha);
+		
+		mntmMostrarFecha = new JMenuItem("Mostrar Ventana Fecha");
+		mnFecha.add(mntmMostrarFecha);
 		
 	}
 }

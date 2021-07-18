@@ -9,8 +9,16 @@ import java.io.ObjectOutputStream;
 
 public class ManejoArchivos {
 
-    private static void crearCarpetaData(){
+    public static void crearCarpetaData(){
         File directorio = new File("./Data");
+        if (!directorio.exists()) {
+            if (directorio.mkdirs()) {
+                System.out.println("Directorio creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
+        }
+		directorio = new File("./DataCopia");
         if (!directorio.exists()) {
             if (directorio.mkdirs()) {
                 System.out.println("Directorio creado");
@@ -21,17 +29,17 @@ public class ManejoArchivos {
     }
     
     //Lee el archivo con los datos de los huespedes.
-    public static ManejoHuespedes leerDatosHuespedes() {
+    public static ManejoHuespedes leerDatosHuespedes(String nombre) {
 		
 		ManejoHuespedes huespedes = new ManejoHuespedes();
 
 		try {
 			
 			ObjectInputStream archivo = null;
-			File path = new File("./Data/Huespedes.dat");
+			File path = new File(nombre);
 			
 			if(path.exists()) {
-				archivo = new ObjectInputStream(new FileInputStream("./Data/Huespedes.dat"));
+				archivo = new ObjectInputStream(new FileInputStream(nombre));
 				huespedes = (ManejoHuespedes)archivo.readObject();
 				archivo.close();
 			}
@@ -51,11 +59,11 @@ public class ManejoArchivos {
 	}
 	
 	//Escribe en el archivo con los datos de los huespedes.
-	public static boolean EscribirDatosHuespedes(ManejoHuespedes huespedes) {
+	public static boolean EscribirDatosHuespedes(ManejoHuespedes huespedes, String nombre) {
 
 		crearCarpetaData();
 		try {
-			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream("./Data/Huespedes.dat"));
+			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream(nombre));
 			archivo.writeObject(huespedes);
 			archivo.flush();
 			archivo.close();

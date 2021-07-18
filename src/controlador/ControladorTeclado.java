@@ -24,19 +24,19 @@ public class ControladorTeclado implements KeyListener{
             }
             break;
             case Letras: {
-                if( !(eve >= 65 && eve <= 90)&&!(eve >= 97 & eve <= 122) ) {
+                if( !(eve >= 65 && eve <= 90) && !(eve >= 97 & eve <= 122) && (eve != 32) ) {
                     e.consume();
                 }
             }
             break;
             case Iden: {
-                if( !(eve >= 65 && eve <= 90)&&!(eve >= 48 & eve <= 57) ) {
+                if( !(eve >= 65 && eve <= 90) && !(eve >= 48 & eve <= 57) && !(eve >= 97 & eve <= 122) ) {
                     e.consume();
                 }
             }
             break;
             case Texto: {
-                if( !(eve >= 65 && eve <= 90)&&!(eve >= 97 && eve <= 122)&&!(eve >= 48 && eve <= 57) ) {
+                if( !(eve >= 65 && eve <= 90)&&!(eve >= 97 && eve <= 122)&&!(eve >= 48 && eve <= 57) && (eve != 32) ) {
                     e.consume();
                 }
             }
