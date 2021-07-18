@@ -1,9 +1,10 @@
 package modelo;
 
 import java.util.*;
+import java.io.Serializable;
 import java.time.*;
 
-public class ManejoHuespedes {
+public class ManejoHuespedes implements Serializable{
     
     private static ManejoHuespedes instancia = null;
     private ArrayList<Afiliado> listaAfiliados;
@@ -12,6 +13,13 @@ public class ManejoHuespedes {
     public static ManejoHuespedes getListas(){
         if(instancia == null){
             instancia = new ManejoHuespedes();
+        }
+        return instancia;
+    }
+
+    public static ManejoHuespedes getListas(ManejoHuespedes hues){
+        if(instancia == null){
+            instancia = hues;
         }
         return instancia;
     }
@@ -129,6 +137,7 @@ public class ManejoHuespedes {
         int pos = buscar(afil, identificacion);
 
         if(pos != -1){
+            System.out.println(identificacion+afil);
             Huesped cliente;
             if(afil){
                 cliente = listaAfiliados.get(pos);
@@ -148,6 +157,30 @@ public class ManejoHuespedes {
         }
         return false;
 
+    }
+
+    public boolean moverHuespedLista(String iden, boolean afil){
+        int pos = buscar(afil, iden);
+        Huesped cliente;
+
+        if(pos != -1){
+            if(afil){
+                cliente = listaAfiliados.get(pos);
+                listaAfiliados.remove(pos);
+                Afiliado auxAfiliado = (Afiliado)cliente;
+                listaAfiliados.add(auxAfiliado);
+                return true;
+            }
+            else{
+                cliente = listaNoAfiliados.get(pos);
+                listaNoAfiliados.remove(pos);
+                NoAfiliado auxNoAfiliado = (NoAfiliado)cliente;
+                listaNoAfiliados.add(auxNoAfiliado);
+                return true;
+            }
+        }
+
+        return true;
     }
 
     public boolean modificarAfiliacion(LocalDate fecha, String iden){

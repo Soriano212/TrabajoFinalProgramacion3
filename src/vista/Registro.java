@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.JCheckBox;
 
 public class Registro extends JPanel {
 	
@@ -34,6 +35,8 @@ public class Registro extends JPanel {
 
 	public JRadioButton rdbtnSi;
 	public JRadioButton rdbtnNo;
+	
+	public JCheckBox chckbxEstado;
 
 	public JComboBox<String> comboBoxIden;
 
@@ -42,6 +45,8 @@ public class Registro extends JPanel {
 	public JButton btnVer;
 	public JButton btnModificar;
 	public JButton btnListar;
+	
+	public JLabel lblEstado;
 
 	/**
 	 * Create the panel.
@@ -111,7 +116,7 @@ public class Registro extends JPanel {
 		rdbtnNo.setSelected(true);
 		buttonGroupRegistro.add(rdbtnNo);
 		rdbtnNo.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		rdbtnNo.setBounds(462, 398, 109, 23);
+		rdbtnNo.setBounds(462, 398, 75, 23);
 		add(rdbtnNo);
 		
 		comboBoxIden = new JComboBox<String>();
@@ -294,6 +299,16 @@ public class Registro extends JPanel {
 		btnListar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnListar.setBounds(52, 11, 153, 23);
 		add(btnListar);
+		
+		lblEstado = new JLabel("Cambiar Estado:");
+		lblEstado.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEstado.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		lblEstado.setBounds(550, 379, 119, 32);
+		add(lblEstado);
+		
+		chckbxEstado = new JCheckBox("");
+		chckbxEstado.setBounds(597, 407, 97, 23);
+		add(chckbxEstado);
 		
 	}
 }

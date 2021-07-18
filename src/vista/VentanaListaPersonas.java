@@ -71,7 +71,7 @@ public class VentanaListaPersonas extends JFrame {
 		contentPane.add(scrollPane);
 		
 		tableAfiliados = new JTable();
-		tableAfiliados.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		tableAfiliados.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
 		scrollPane.setViewportView(tableAfiliados);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
@@ -79,6 +79,7 @@ public class VentanaListaPersonas extends JFrame {
 		contentPane.add(scrollPane_1);
 		
 		tableNoAfiliados = new JTable();
+		tableNoAfiliados.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
 		scrollPane_1.setViewportView(tableNoAfiliados);
 		
 		JLabel lblAfiliados = new JLabel("Afiliados");

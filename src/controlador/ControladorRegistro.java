@@ -5,7 +5,6 @@ import vista.VentanaListaPersonas;
 
 import java.awt.event.*;
 import java.time.*;
-import java.time.temporal.TemporalField;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,12 +25,16 @@ public class ControladorRegistro implements ActionListener{
         this.vista = vista;
         this.manejo = ManejoHuespedes.getListas();
         this.vistaLista = new VentanaListaPersonas();
+        this.vista.btnModificar.setEnabled(false);
+        this.vista.lblEstado.setVisible(false);
+        this.vista.chckbxEstado.setVisible(false);
 
         //Pone a la escucha a los botones
         vista.btnRegistrar.addActionListener(this);
         vista.btnLimpiar.addActionListener(this);
         vista.btnModificar.addActionListener(this);
         vista.btnListar.addActionListener(this);
+        vista.btnVer.addActionListener(this);
         vistaLista.btnCambiar.addActionListener(this);
 
         soloNumeros = new ControladorTeclado(ControladorTeclado.tipo.Numeros);
@@ -84,23 +87,30 @@ public class ControladorRegistro implements ActionListener{
         String dir = vista.textFieldDirec.getText();
         String banco = vista.textFieldBanco.getText();
         String numtar = vista.textFieldNumTar.getText();
+
+        LocalDate fecNac = null, fecCad = null;
         
-        int diacli = Integer.parseInt(vista.textFieldDiaCli.getText());
-        int mescli = Integer.parseInt(vista.textFieldMesCli.getText());
-        int aniocli = Integer.parseInt(vista.textFieldAnioCli.getText());
-        LocalDate fecNac = LocalDate.of(aniocli, mescli, diacli);
-
-        int mesban = Integer.parseInt(vista.textFieldMesBan.getText());
-        int anioban = Integer.parseInt(vista.textFieldAnioBan.getText());
-        LocalDate fecCad = LocalDate.of(anioban,mesban,1);
-
-        boolean afil;
-        if(vista.rdbtnSi.isSelected()){
-            afil = true;
+        try{
+            int diacli = Integer.parseInt(vista.textFieldDiaCli.getText());
+            int mescli = Integer.parseInt(vista.textFieldMesCli.getText());
+            int aniocli = Integer.parseInt(vista.textFieldAnioCli.getText());
+            fecNac = LocalDate.of(aniocli, mescli, diacli);
         }
-        else{
-            afil = false;
+        catch(NumberFormatException ex){
+            return false;
         }
+
+        try{
+            int mesban = Integer.parseInt(vista.textFieldMesBan.getText());
+            int anioban = Integer.parseInt(vista.textFieldAnioBan.getText());
+            fecCad = LocalDate.of(anioban,mesban,1);
+        }
+        catch(NumberFormatException ex){
+            return false;
+        }
+
+        boolean afil = false;
+        if(vista.rdbtnSi.isSelected()) afil = true;
 
         LocalDate fecAf;
         if(afil){
@@ -115,6 +125,7 @@ public class ControladorRegistro implements ActionListener{
         }
         else{
             if(manejo.modificarHuesped(iden, nom, ape, fecNac, cell, fijo, dir, prof, banco, numtar, fecCad, afil)){
+                if(vista.chckbxEstado.isSelected()) manejo.moverHuespedLista(iden, afil);
                 return true;
             }
         }
@@ -138,9 +149,11 @@ public class ControladorRegistro implements ActionListener{
         vista.textFieldMesBan.setText(null);
         vista.textFieldMesCli.setText(null);
         vista.rdbtnNo.setSelected(true);
+        vista.chckbxEstado.setSelected(false);
     }
 
     public boolean cargarDatos(String iden){
+        if(iden == null) return false;
         Huesped hues = manejo.getHuesped(iden);
         
         if(hues != null){
@@ -185,6 +198,9 @@ public class ControladorRegistro implements ActionListener{
         }
         catch(DateTimeException ex){
             retorno = retorno + " Fecha Nacimiento.";
+        }  
+        catch(NumberFormatException ex){
+            retorno = retorno + " Fecha Nacimiento.";
         }
 
         try{
@@ -193,6 +209,9 @@ public class ControladorRegistro implements ActionListener{
             LocalDate.of(anioban,mesban,1);
         }
         catch(DateTimeException ex){
+            retorno = retorno + " Fecha Caducidad.";
+        }
+        catch(NumberFormatException ex){
             retorno = retorno + " Fecha Caducidad.";
         }
 
@@ -208,7 +227,7 @@ public class ControladorRegistro implements ActionListener{
             String iden = vista.textFieldIden.getText();
 
             if(manejo.buscar(true,iden) == -1 && manejo.buscar(false,iden) == -1){
-                if(val != null){
+                if(val == null){
                     agregarModificar(true);
                     JOptionPane.showMessageDialog(null, "Huesped agregado.");
                     limpiar();
@@ -224,6 +243,11 @@ public class ControladorRegistro implements ActionListener{
         if(e.getSource() == vista.btnVer){
             if(cargarDatos(vista.textFieldIden.getText())){
                 JOptionPane.showMessageDialog(null, "Datos Cargados.");
+                this.vista.btnModificar.setEnabled(true);
+                this.vista.btnRegistrar.setEnabled(false);
+                this.vista.textFieldIden.setEditable(false);
+                this.vista.lblEstado.setVisible(true);
+                this.vista.chckbxEstado.setVisible(true);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error no se encontraron los datos.");
@@ -231,13 +255,23 @@ public class ControladorRegistro implements ActionListener{
         }
         if(e.getSource() == vista.btnLimpiar){
             limpiar();
+            this.vista.btnModificar.setEnabled(false);
+            this.vista.btnRegistrar.setEnabled(true);
+            this.vista.textFieldIden.setEditable(true);
+            this.vista.lblEstado.setVisible(false);
+            this.vista.chckbxEstado.setVisible(false);
         }
         if(e.getSource() == vista.btnModificar){
             String val =verificacion();
-            if(val != null){
+            if(val == null){
                 if(agregarModificar(false)){
                     JOptionPane.showMessageDialog(null, "Huesped modificado.");
                     limpiar();
+                    this.vista.btnModificar.setEnabled(false);
+                    this.vista.btnRegistrar.setEnabled(true);
+                    this.vista.textFieldIden.setEditable(true);
+                    this.vista.lblEstado.setVisible(false);
+                    this.vista.chckbxEstado.setVisible(false);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Error al modificar, No se encontro el registro.");
@@ -255,14 +289,18 @@ public class ControladorRegistro implements ActionListener{
             boolean val = true;
             LocalDate fecha = null;
 
-            int dia = Integer.parseInt(vistaLista.textDia.getText());
-            int mes = Integer.parseInt(vistaLista.textMes.getText());
-            int anio = Integer.parseInt(vistaLista.textAnio.getText());
             try{
+                int dia = Integer.parseInt(vistaLista.textDia.getText());
+                int mes = Integer.parseInt(vistaLista.textMes.getText());
+                int anio = Integer.parseInt(vistaLista.textAnio.getText());
                 fecha = LocalDate.of(anio, mes, dia);
                 val =true;
             }
-            catch(DateTimeException timeE){
+            catch(DateTimeException ex){
+                val = false;
+                JOptionPane.showMessageDialog(null, "Error al modificar fecha, fecha invalida.");
+            }
+            catch(NumberFormatException ex){
                 val = false;
                 JOptionPane.showMessageDialog(null, "Error al modificar fecha, fecha invalida.");
             }

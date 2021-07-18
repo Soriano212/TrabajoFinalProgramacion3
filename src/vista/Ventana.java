@@ -5,9 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
 import java.awt.Font;
 
-public class Ventana {
+public class Ventana{
 
-	private JFrame frame;
+	public JFrame frame;
 	public Bienvenido panelBienvenido;
 	public Registro panelRegistro;
 	public Reserva panelReserva;
@@ -47,9 +47,10 @@ public class Ventana {
 		frame = new JFrame();
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 700, 735);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Administracion Hostal");
+		frame.setResizable(false);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(0, 0, 684, 696);
