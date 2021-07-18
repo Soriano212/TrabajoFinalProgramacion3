@@ -9,10 +9,11 @@ import java.time.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+import modelo.Afiliado;
 import modelo.Huesped;
 import modelo.ManejoHuespedes;
 
-public class ControladorRegistro extends AdaptadorListener implements ActionListener{
+public class ControladorRegistro extends AdaptadorListener{
 
     private Registro vista;
     private ManejoHuespedes manejo;
@@ -20,14 +21,22 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
     private DefaultTableModel modelTabla;
     private ControladorTeclado soloNumeros;
     private ControladorTeclado soloIden;
+    private String seleccionIden;
+    private boolean seleccionAfil = false;
 
-    public ControladorRegistro(Registro vista, ManejoHuespedes manejo){
+    public ControladorRegistro(Registro vista){
         this.vista = vista;
-        this.manejo = manejo;
+        this.manejo = ManejoHuespedes.getListas();
         this.vistaLista = new VentanaListaPersonas();
+
+        //Deshabilitamos valores
         this.vista.btnModificar.setEnabled(false);
         this.vista.lblEstado.setVisible(false);
         this.vista.chckbxEstado.setVisible(false);
+        vistaLista.textAnio.setEnabled(false);
+        vistaLista.textMes.setEnabled(false);
+        vistaLista.textDia.setEnabled(false);
+        vistaLista.btnCambiar.setEnabled(false);
 
         //Pone a la escucha a los botones
         vista.btnRegistrar.addActionListener(this);
@@ -51,26 +60,29 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
         vista.textFieldDiaCli.addKeyListener(soloNumeros);
         vista.textFieldDirec.addKeyListener(soloTexto);
         vista.textFieldFijo.addKeyListener(soloNumeros);
-        vista.textFieldIden.addKeyListener(soloIden);
         vista.textFieldMesBan.addKeyListener(soloNumeros);
         vista.textFieldMesCli.addKeyListener(soloNumeros);
         vista.textFieldNombres.addKeyListener(soloLetras);
         vista.textFieldNumTar.addKeyListener(soloNumeros);
         vista.textFieldProf.addKeyListener(soloLetras);
 
+        //Pone a la escucha de keylistener a los votones de la ventana listar;
         vistaLista.textAnio.addKeyListener(soloNumeros);
         vistaLista.textMes.addKeyListener(soloNumeros);
         vistaLista.textDia.addKeyListener(soloNumeros);
 
+        //Pone a la escucha de Mouselistener a la tabla de la ventana listar;
         vistaLista.tableAfiliados.addMouseListener(this);
         vistaLista.tableNoAfiliados.addMouseListener(this);
 
-        //manejo.addValor("0150440378", "Alberto", "Soriano", LocalDate.now(), "0969393695", null,
-        //"Cuenca", "ING", "Pacifico", "012343212231321321", LocalDate.now(), false, null);
+        //Pone a las escucha de focus listener a Iden y combobox
+        vista.textFieldIden.addFocusListener(this);
+        vista.comboBoxIden.addFocusListener(this);
 
     }
 
     public void actializarTabla() {
+        manejo = ManejoHuespedes.getListas();
         String col[] = {"Identificacion", "Nombres", "Apellidos"};
 
         String data[][] = manejo.getMatrizAfiliados();
@@ -118,7 +130,7 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
         boolean afil = false;
         if(vista.rdbtnSi.isSelected()) afil = true;
 
-        LocalDate fecAf;
+        LocalDate fecAf = null;
         if(afil){
             fecAf = LocalDate.now();
         }else{
@@ -132,7 +144,13 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
         else{
             if(manejo.modificarHuesped(iden, nom, ape, fecNac, cell, fijo, dir, prof, banco, numtar, fecCad, afil)){
                 System.out.println(vista.chckbxEstado.isSelected());
-                if(vista.chckbxEstado.isSelected()) manejo.moverHuespedLista(iden, afil);
+                if(vista.chckbxEstado.isSelected()){
+                    manejo.moverHuespedLista(iden, afil);
+                    if(afil == false){
+                        manejo.modificarAfiliacion(LocalDate.now(), iden);
+                    }
+                }
+                
                 return true;
             }
         }
@@ -157,6 +175,18 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
         vista.textFieldMesCli.setText(null);
         vista.rdbtnNo.setSelected(true);
         vista.chckbxEstado.setSelected(false);
+        vistaLista.textDia.setText(null);
+        vistaLista.textMes.setText(null);
+        vistaLista.textAnio.setText(null);
+
+        vista.comboBoxIden.setEnabled(true);
+        this.vista.btnModificar.setEnabled(false);
+        this.vista.btnRegistrar.setEnabled(true);
+        this.vista.textFieldIden.setEditable(true);
+        this.vista.lblEstado.setVisible(false);
+        this.vista.chckbxEstado.setVisible(false);
+        this.vista.rdbtnNo.setEnabled(true);
+        this.vista.rdbtnSi.setEnabled(true);
     }
 
     public boolean cargarDatos(String iden){
@@ -174,10 +204,43 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
             vista.textFieldFijo.setText(hues.getTelefonoFijo());
             vista.textFieldIden.setText(hues.getIdentificacion());
             vista.textFieldMesBan.setText(hues.getTarjeta().getFechaCaducidad().getMonthValue()+"");
-            vista.textFieldMesCli.setText(hues.getFechaNacimiento().getMonthValue()+"");;
+            vista.textFieldMesCli.setText(hues.getFechaNacimiento().getMonthValue()+"");
             vista.textFieldNombres.setText(hues.getNombre());
             vista.textFieldNumTar.setText(hues.getTarjeta().getNumeroTarjeta());
             vista.textFieldProf.setText(hues.getProfesion());
+            
+            seleccionAfil = false;
+            if(hues.getClass() == Afiliado.class){
+                vista.rdbtnSi.setSelected(true); 
+                seleccionAfil = true;
+            }
+
+            vista.btnModificar.setEnabled(true);
+            vista.btnRegistrar.setEnabled(false);
+            vista.comboBoxIden.setEnabled(false);
+            vista.textFieldIden.setEditable(false);
+            vista.lblEstado.setVisible(true);
+            vista.chckbxEstado.setVisible(true);
+            vista.rdbtnNo.setEnabled(false);
+            vista.rdbtnSi.setEnabled(false);
+            if(seleccionAfil){
+                LocalDate fechaAfil = manejo.obtenerAfiliacion(iden);
+                vistaLista.textDia.setText(fechaAfil.getDayOfMonth()+"");
+                vistaLista.textMes.setText(fechaAfil.getMonthValue()+"");
+                vistaLista.textAnio.setText(fechaAfil.getYear()+"");
+
+                vistaLista.textAnio.setEnabled(true);
+                vistaLista.textMes.setEnabled(true);
+                vistaLista.textDia.setEnabled(true);
+                vistaLista.btnCambiar.setEnabled(true);
+            }
+            else{
+                vistaLista.textAnio.setEnabled(false);
+                vistaLista.textMes.setEnabled(false);
+                vistaLista.textDia.setEnabled(false);
+                vistaLista.btnCambiar.setEnabled(false);
+            }
+
             return true;
         }
 
@@ -202,6 +265,9 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
             int mescli = Integer.parseInt(vista.textFieldMesCli.getText());
             int aniocli = Integer.parseInt(vista.textFieldAnioCli.getText());
             LocalDate.of(aniocli, mescli, diacli);
+            if(aniocli < 1900 || aniocli > 2021){
+                retorno = retorno + " Fecha Nacimiento.";
+            }
         }
         catch(DateTimeException ex){
             retorno = retorno + " Fecha Nacimiento.";
@@ -214,6 +280,9 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
             int mesban = Integer.parseInt(vista.textFieldMesBan.getText());
             int anioban = Integer.parseInt(vista.textFieldAnioBan.getText());
             LocalDate.of(anioban,mesban,1);
+            if(anioban < 2021 || anioban > 2030){
+                retorno = retorno + " Fecha Caducidad.";
+            }
         }
         catch(DateTimeException ex){
             retorno = retorno + " Fecha Caducidad.";
@@ -226,6 +295,7 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
         return null;
     }
 
+    //Action listener
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -250,13 +320,6 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
         if(e.getSource() == vista.btnVer){
             if(cargarDatos(vista.textFieldIden.getText())){
                 JOptionPane.showMessageDialog(null, "Datos Cargados.");
-                this.vista.btnModificar.setEnabled(true);
-                this.vista.btnRegistrar.setEnabled(false);
-                this.vista.textFieldIden.setEditable(false);
-                this.vista.lblEstado.setVisible(true);
-                this.vista.chckbxEstado.setVisible(true);
-                this.vista.rdbtnNo.setEnabled(false);
-                this.vista.rdbtnSi.setEnabled(false);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error no se encontraron los datos.");
@@ -264,13 +327,6 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
         }
         if(e.getSource() == vista.btnLimpiar){
             limpiar();
-            this.vista.btnModificar.setEnabled(false);
-            this.vista.btnRegistrar.setEnabled(true);
-            this.vista.textFieldIden.setEditable(true);
-            this.vista.lblEstado.setVisible(false);
-            this.vista.chckbxEstado.setVisible(false);
-            this.vista.rdbtnNo.setEnabled(true);
-            this.vista.rdbtnSi.setEnabled(true);
         }
         if(e.getSource() == vista.btnModificar){
             String val =verificacion();
@@ -278,13 +334,6 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
                 if(agregarModificar(false)){
                     JOptionPane.showMessageDialog(null, "Huesped modificado.");
                     limpiar();
-                    this.vista.btnModificar.setEnabled(false);
-                    this.vista.btnRegistrar.setEnabled(true);
-                    this.vista.textFieldIden.setEditable(true);
-                    this.vista.lblEstado.setVisible(false);
-                    this.vista.chckbxEstado.setVisible(false);
-                    this.vista.rdbtnNo.setEnabled(true);
-                    this.vista.rdbtnSi.setEnabled(true);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Error al modificar, No se encontro el registro.");
@@ -308,6 +357,9 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
                 int anio = Integer.parseInt(vistaLista.textAnio.getText());
                 fecha = LocalDate.of(anio, mes, dia);
                 val =true;
+                if(anio < 1950 || anio > 2050){
+                    val = false;
+                }
             }
             catch(DateTimeException ex){
                 val = false;
@@ -332,29 +384,45 @@ public class ControladorRegistro extends AdaptadorListener implements ActionList
         actializarTabla();
     }
 
+    // Mouse Listener
     @Override
     public void mouseClicked(MouseEvent e) {
         if(e.getSource() == vistaLista.tableAfiliados){
             int seleccion = vistaLista.tableAfiliados.getSelectedRow();
+            limpiar();
             cargarDatos((String)vistaLista.tableAfiliados.getValueAt(seleccion, 0));
-            vista.btnModificar.setEnabled(true);
-            vista.btnRegistrar.setEnabled(false);
-            vista.textFieldIden.setEditable(false);
-            vista.lblEstado.setVisible(true);
-            vista.chckbxEstado.setVisible(true);
-            vista.rdbtnNo.setEnabled(false);
-            vista.rdbtnSi.setEnabled(false);
         }
         if(e.getSource() == vistaLista.tableNoAfiliados){
             int seleccion = vistaLista.tableNoAfiliados.getSelectedRow();
+            limpiar();
             cargarDatos((String)vistaLista.tableNoAfiliados.getValueAt(seleccion, 0));
-            vista.btnModificar.setEnabled(true);
-            vista.btnRegistrar.setEnabled(false);
-            vista.textFieldIden.setEditable(false);
-            vista.lblEstado.setVisible(true);
-            vista.chckbxEstado.setVisible(true);
-            vista.rdbtnNo.setEnabled(false);
-            vista.rdbtnSi.setEnabled(false);
+        }
+    }
+
+    //Focus Listerner
+    @Override
+    public void focusGained(FocusEvent e) {
+        if(e.getSource() == vista.textFieldIden){
+            if( vista.comboBoxIden.getSelectedItem().equals("Cedula") ){
+                this.vista.textFieldIden.removeKeyListener(soloIden);
+                this.vista.textFieldIden.addKeyListener(soloNumeros);
+            }
+            else{
+                this.vista.textFieldIden.removeKeyListener(soloNumeros);
+                this.vista.textFieldIden.addKeyListener(soloIden);
+            }
+        }
+        if(e.getSource() == vista.comboBoxIden){
+            seleccionIden = (String)vista.comboBoxIden.getSelectedItem();
+        }
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        if(e.getSource() == vista.comboBoxIden){
+            if(!vista.comboBoxIden.getSelectedItem().equals(seleccionIden)){
+                vista.textFieldIden.setText("");
+            }
         }
     }
 

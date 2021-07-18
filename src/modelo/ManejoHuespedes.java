@@ -17,9 +17,12 @@ public class ManejoHuespedes implements Serializable{
         return instancia;
     }
 
-    public static void Lectura(ManejoHuespedes hues){
-        if(hues != null){
-            instancia = hues;
+    public void Lectura(ArrayList<Afiliado> afil, ArrayList<NoAfiliado> noafil){
+        if(afil != null){
+            this.listaAfiliados = afil;
+        }
+        if(noafil != null){
+            this.listaNoAfiliados = noafil;
         }
     }
 
@@ -136,7 +139,7 @@ public class ManejoHuespedes implements Serializable{
         int pos = buscar(afil, identificacion);
 
         if(pos != -1){
-            System.out.println(identificacion+afil);
+
             Huesped cliente;
             if(afil){
                 cliente = listaAfiliados.get(pos);
@@ -161,22 +164,30 @@ public class ManejoHuespedes implements Serializable{
     public boolean moverHuespedLista(String iden, boolean afil){
         int pos = buscar(afil, iden);
         Huesped cliente;
-
         if(pos != -1){
+
             if(afil){
                 cliente = listaAfiliados.get(pos);
-                listaAfiliados.remove(pos);
-                Afiliado auxAfiliado = (Afiliado)cliente;
-                listaAfiliados.add(auxAfiliado);
-                return true;
             }
             else{
                 cliente = listaNoAfiliados.get(pos);
-                listaNoAfiliados.remove(pos);
-                NoAfiliado auxNoAfiliado = (NoAfiliado)cliente;
-                listaNoAfiliados.add(auxNoAfiliado);
-                return true;
             }
+
+            String nom = cliente.getNombre();
+            String ape = cliente.getApellido();
+            String prof = cliente.getProfesion();
+            String cell = cliente.getTelefonoCelular();
+            String fijo = cliente.getTelefonoFijo();
+            String dir = cliente.getDireccionOrigen();
+            String banco = cliente.getTarjeta().getBancoEmisor();
+            String numtar = cliente.getTarjeta().getNumeroTarjeta();
+            LocalDate fecNac = cliente.getFechaNacimiento();
+            LocalDate fecCad = cliente.getTarjeta().getFechaCaducidad();
+
+            addValor(iden, nom, ape, fecNac, cell, fijo, dir, prof, banco, numtar, fecCad, !afil, null);
+            eliminarHuesped(afil, iden);
+
+            return true;
         }
 
         return true;
@@ -191,5 +202,23 @@ public class ManejoHuespedes implements Serializable{
         }
         return false;
     }
+
+    public LocalDate obtenerAfiliacion(String iden){
+        int pos = buscar(true, iden);
+
+        if(pos != -1){
+            return listaAfiliados.get(pos).getFechaAfiliacion();
+        }
+        return null;
+    }
+
+    public ArrayList<Afiliado> getListaAfiliados() {
+        return this.listaAfiliados;
+    }
+
+    public ArrayList<NoAfiliado> getListaNoAfiliados() {
+        return this.listaNoAfiliados;
+    }
+    
 
 }

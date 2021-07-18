@@ -2,8 +2,9 @@ package controlador;
 
 import java.awt.event.*;
 
-public class AdaptadorListener implements MouseListener {
+public class AdaptadorListener implements MouseListener, ActionListener, FocusListener{
 
+    //Mouse Listener
     @Override
     public void mouseClicked(MouseEvent e) {
     }
@@ -22,6 +23,20 @@ public class AdaptadorListener implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    //Action Listener
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    }
+
+    //Focus Listener
+    @Override
+    public void focusGained(FocusEvent e) {
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
     }
 
 }
