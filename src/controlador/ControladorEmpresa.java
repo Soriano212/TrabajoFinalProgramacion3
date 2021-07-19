@@ -6,19 +6,22 @@ import java.awt.event.*;
 
 import modelo.Empresa;
 import modelo.Propietario;
+import vista.VistaBienvenido;
 import vista.VistaEmpresa;
 
 public class ControladorEmpresa extends AdaptadorListener{
     
     private VistaEmpresa vista;
+    private VistaBienvenido vistaBienvenido;
     private Empresa manejo;
     private DefaultTableModel modelTabla;
     private ControladorTeclado soloNumeros;
     private ControladorTeclado soloIden;
     private String seleccionIden;
 
-    public ControladorEmpresa(VistaEmpresa vista){
+    public ControladorEmpresa(VistaEmpresa vista, VistaBienvenido vistaBienvenido){
         this.vista = vista;
+        this.vistaBienvenido = vistaBienvenido;
         this.manejo = Empresa.getEmpresa();
 
         actializarTabla();
@@ -241,6 +244,9 @@ public class ControladorEmpresa extends AdaptadorListener{
             manejo.setNombre(vista.textNombreEmpresa.getText());
             vista.textNombreEmpresa.setText(manejo.getNombre());
             vista.textDireccionEmpresa.setText(manejo.getDireccion());
+
+            vistaBienvenido.lblNombre.setText(manejo.getNombre().toUpperCase());
+            vistaBienvenido.lblDireccion.setText(manejo.getDireccion());
             JOptionPane.showMessageDialog(null, "Datos Modificados.");
         }
 

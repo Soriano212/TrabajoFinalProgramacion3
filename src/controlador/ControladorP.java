@@ -33,11 +33,15 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		ven.mntmGuardar.addActionListener(this);
 		ven.mntmGuardarCopia.addActionListener(this);
 		ven.mntmLeerCopia.addActionListener(this);
+		ven.mntmSalir.addActionListener(this);
 
 		ctrlRegistro = new ControladorRegistro(ven.panelRegistro);
-		ctrlEmpresa = new ControladorEmpresa(ven.panelEmpresa);
+		ctrlEmpresa = new ControladorEmpresa(ven.panelEmpresa, ven.panelBienvenido);
 
 		leerArchivos(nombreOficial);
+
+		ven.panelBienvenido.lblNombre.setText(empresa.getNombre().toUpperCase());
+		ven.panelBienvenido.lblDireccion.setText(empresa.getDireccion());
 	}
 
 	public void actualizarTablas(){
@@ -58,6 +62,7 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 	public void Iniciar()
     {
         ven.frame.setLocationRelativeTo(null);
+		ven.frame.setVisible(true);
     }
 
 	public void guardarArchivos(String direccion){
@@ -107,10 +112,6 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		}
 	}
 
-	public ControladorRegistro getCtrlRegistro() {
-		return this.ctrlRegistro;
-	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -129,6 +130,14 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 			if(direccion != null){
 				System.out.println(direccion);
 				leerArchivos(direccion);
+			}
+		}
+		if(e.getSource() == ven.mntmSalir){
+			int option = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres cerrar la aplicacion sin guardar?",
+			"Confirmacion de cierre", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+			if (option == JOptionPane.YES_OPTION) {
+				System.exit(0);
 			}
 		}
 		

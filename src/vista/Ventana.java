@@ -55,7 +55,6 @@ public class Ventana{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setVisible(true);
 		frame.setBounds(100, 100, 700, 756);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

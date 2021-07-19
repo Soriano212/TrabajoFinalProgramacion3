@@ -7,6 +7,9 @@ import javax.swing.SwingConstants;
 
 public class VistaBienvenido extends JPanel {
 
+	public JLabel lblNombre;
+	public JLabel lblDireccion;
+
 	/**
 	 * Create the panel.
 	 */
@@ -19,12 +22,17 @@ public class VistaBienvenido extends JPanel {
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 48));
 		add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_2_1 = new JLabel("RECREACIONES CIA. LTDA.");
-		lblNewLabel_2_1.setBounds(42, 322, 589, 58);
-		lblNewLabel_2_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 48));
-		add(lblNewLabel_2_1);
+		lblNombre = new JLabel("RECREACIONES CIA. LTDA.");
+		lblNombre.setBounds(42, 322, 589, 58);
+		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 48));
+		add(lblNombre);
+		
+		lblDireccion = new JLabel("RECREACIONES CIA. LTDA.");
+		lblDireccion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDireccion.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblDireccion.setBounds(42, 552, 589, 58);
+		add(lblDireccion);
 
 	}
-
 }

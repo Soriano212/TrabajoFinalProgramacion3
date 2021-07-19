@@ -51,6 +51,7 @@ public class VentanaListaPersonas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setTitle("Lista de Huespedes");
+		setResizable(false);
 		
 		JLabel lblListaDeClientes = new JLabel("LISTA DE CLIENTES");
 		lblListaDeClientes.setHorizontalAlignment(SwingConstants.CENTER);
