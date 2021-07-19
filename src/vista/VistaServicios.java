@@ -11,7 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
-public class Servicios extends JPanel {
+public class VistaServicios extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -20,7 +20,7 @@ public class Servicios extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Servicios() {
+	public VistaServicios() {
 		setLayout(null);
 		
 		JLabel lblSolicitarServicios = new JLabel("SOLICITAR SERVICIOS");

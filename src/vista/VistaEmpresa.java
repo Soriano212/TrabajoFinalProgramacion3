@@ -12,7 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class Empresa extends JPanel {
+public class VistaEmpresa extends JPanel {
 	private JTextField textIden;
 	private JTextField textNombres;
 	private JTextField textApellidos;
@@ -25,7 +25,7 @@ public class Empresa extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Empresa() {
+	public VistaEmpresa() {
 		setLayout(null);
 		
 		JLabel lblGestionarPropietarios = new JLabel("PROPIETARIOS");

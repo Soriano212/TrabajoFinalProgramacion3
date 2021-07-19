@@ -35,6 +35,7 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		ven.mntmLeerCopia.addActionListener(this);
 
 		ctrlRegistro = new ControladorRegistro(ven.panelRegistro);
+		ctrlEmpresa = new ControladorEmpresa(ven.panelEmpresa);
 
 		leerArchivos(nombreOficial);
 	}

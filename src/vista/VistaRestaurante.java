@@ -10,11 +10,10 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class Restaurante extends JPanel {
+public class VistaRestaurante extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -28,7 +27,7 @@ public class Restaurante extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Restaurante() {
+	public VistaRestaurante() {
 		setLayout(null);
 		
 		JLabel lblReservarMesa = new JLabel("RESERVAR MESA");

@@ -5,12 +5,12 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class Bienvenido extends JPanel {
+public class VistaBienvenido extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public Bienvenido() {
+	public VistaBienvenido() {
 		setLayout(null);
 		
 		JLabel lblNewLabel_2 = new JLabel("BIENVENIDO");

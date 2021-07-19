@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 
-public class Registro extends JPanel {
+public class VistaRegistro extends JPanel {
 	
 	private final ButtonGroup buttonGroupRegistro = new ButtonGroup();
 
@@ -51,7 +51,7 @@ public class Registro extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Registro() {
+	public VistaRegistro() {
 		setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("NUEVO CLIENTE");

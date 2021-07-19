@@ -1,5 +1,9 @@
 package controlador;
 
-public class ControladorEmpresa {
+import vista.VistaEmpresa;
+
+public class ControladorEmpresa extends AdaptadorListener{
     
+    private VistaEmpresa vista;
+
 }

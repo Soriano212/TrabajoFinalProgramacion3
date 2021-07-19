@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class Administrar extends JPanel {
+public class VistaAdministrar extends JPanel {
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -22,7 +22,7 @@ public class Administrar extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Administrar() {
+	public VistaAdministrar() {
 		setLayout(null);
 		
 		JLabel lblAgregar = new JLabel("AGREGAR");

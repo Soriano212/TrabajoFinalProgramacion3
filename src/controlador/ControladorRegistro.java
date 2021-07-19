@@ -1,6 +1,6 @@
 package controlador;
 
-import vista.Registro;
+import vista.VistaRegistro;
 import vista.VentanaListaPersonas;
 
 import java.awt.event.*;
@@ -15,7 +15,7 @@ import modelo.ManejoHuespedes;
 
 public class ControladorRegistro extends AdaptadorListener{
 
-    private Registro vista;
+    private VistaRegistro vista;
     private ManejoHuespedes manejo;
     private VentanaListaPersonas vistaLista;
     private DefaultTableModel modelTabla;
@@ -24,7 +24,7 @@ public class ControladorRegistro extends AdaptadorListener{
     private String seleccionIden;
     private boolean seleccionAfil = false;
 
-    public ControladorRegistro(Registro vista){
+    public ControladorRegistro(VistaRegistro vista){
         this.vista = vista;
         this.manejo = ManejoHuespedes.getListas();
         this.vistaLista = new VentanaListaPersonas();

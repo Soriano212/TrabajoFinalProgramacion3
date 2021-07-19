@@ -9,13 +9,13 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Facturas extends JPanel {
+public class VistaFacturas extends JPanel {
 	private JTextField textField;
 
 	/**
 	 * Create the panel.
 	 */
-	public Facturas() {
+	public VistaFacturas() {
 		setLayout(null);
 		
 		JLabel lblCostosCliente = new JLabel("CLIENTE");

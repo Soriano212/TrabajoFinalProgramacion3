@@ -12,14 +12,14 @@ public class Ventana{
 
 	public JFrame frame;
 	
-	public Bienvenido panelBienvenido;
-	public Registro panelRegistro;
-	public Reserva panelReserva;
-	public Restaurante panelRestaurante;
-	public Servicios panelServicios;
-	public Empresa panelEmpresa;
-	public Administrar panelAdministrar;
-	public Facturas panelFacturas;
+	public VistaBienvenido panelBienvenido;
+	public VistaRegistro panelRegistro;
+	public VistaReserva panelReserva;
+	public VistaRestaurante panelRestaurante;
+	public VistaServicios panelServicios;
+	public VistaEmpresa panelEmpresa;
+	public VistaAdministrar panelAdministrar;
+	public VistaFacturas panelFacturas;
 	
 	public JMenuItem mntmGuardar;
 	public JMenuItem mntmGuardarCopia;
@@ -96,28 +96,28 @@ public class Ventana{
 		tabbedPane.setToolTipText("");
 		frame.getContentPane().add(tabbedPane);
 		
-		panelBienvenido = new Bienvenido();
+		panelBienvenido = new VistaBienvenido();
 		tabbedPane.addTab("Bienvenido", null, panelBienvenido, null);
 		
-		panelRegistro = new Registro();
+		panelRegistro = new VistaRegistro();
 		tabbedPane.addTab("Registro", null, panelRegistro, null);
 		
-		panelReserva = new Reserva();
+		panelReserva = new VistaReserva();
 		tabbedPane.addTab("Reserva", null, panelReserva, null);
 		
-		panelRestaurante = new Restaurante();
+		panelRestaurante = new VistaRestaurante();
 		tabbedPane.addTab("Restaurante", null, panelRestaurante, null);
 		
-		panelServicios = new Servicios();
+		panelServicios = new VistaServicios();
 		tabbedPane.addTab("Servicios", null, panelServicios, null);
 		
-		panelEmpresa =  new Empresa();
+		panelEmpresa =  new VistaEmpresa();
 		tabbedPane.addTab("Empresa", null, panelEmpresa, null);
 		
-		panelAdministrar = new Administrar();
+		panelAdministrar = new VistaAdministrar();
 		tabbedPane.addTab("Administrar", null, panelAdministrar, null);
 		
-		panelFacturas = new Facturas();
+		panelFacturas = new VistaFacturas();
 		tabbedPane.addTab("Facturas", null, panelFacturas, null);
 		
 	}

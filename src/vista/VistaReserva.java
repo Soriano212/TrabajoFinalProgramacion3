@@ -11,7 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 
-public class Reserva extends JPanel {
+public class VistaReserva extends JPanel {
 	public JTextField textIden;
 	public JTextField textDiaEn;
 	public JTextField textMesEn;
@@ -47,7 +47,7 @@ public class Reserva extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Reserva() {
+	public VistaReserva() {
 		setLayout(null);
 		
 		JLabel lblReservarCabaa = new JLabel("RESERVAR CABA\u00D1A");
