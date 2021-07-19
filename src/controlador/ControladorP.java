@@ -121,6 +121,8 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 	@Override
 	public void windowClosing(WindowEvent e) {
 
+		actualizarTablas();
+
 		int option = JOptionPane.showConfirmDialog(null, "Estas seguro de que quieres cerrar la aplicacion?",
 		"Confirmacion de cierre", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
@@ -159,6 +161,8 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 			}
 		}
 		
+		actualizarTablas();
+
 	}
 	
 }
