@@ -42,6 +42,7 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 
 	public void actualizarTablas(){
 		ctrlRegistro.actializarTabla();
+		ctrlEmpresa.actializarTabla();
 	}
 
 	public String buscarGuardar(){

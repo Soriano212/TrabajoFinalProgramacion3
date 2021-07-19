@@ -3,7 +3,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empresa {
+public class Empresa implements Serializable{
     
     private static Empresa instancia = null;
 
@@ -37,7 +37,7 @@ public class Empresa {
 
     public boolean agregarPropietario(String iden, String nombre, String apellido){
         Propietario prop = new Propietario(iden, nombre, apellido);
-        if(listaPropietarios.get(0) == null){
+        if(listaPropietarios.isEmpty()){
             prop.setPorcentaje(porTotal);
         }
         return listaPropietarios.add(prop);
@@ -70,7 +70,7 @@ public class Empresa {
 
         if(pos != -1){
             if(listaPropietarios.get(pos).getPorcentaje() == 0){
-                listaPropietarios.get(pos);
+                listaPropietarios.remove(pos);
                 return true;
             }
         }
@@ -93,7 +93,7 @@ public class Empresa {
         if(posRec == -1) return 0;
     
         int posEmi = buscar(idenEmisor);
-        if(posRec == -1) return 1;
+        if(posEmi == -1) return 1;
 
         Propietario propRec = listaPropietarios.get(posRec);
         Propietario propEmi = listaPropietarios.get(posEmi);

@@ -21,9 +21,7 @@ public class ControladorEmpresa extends AdaptadorListener{
         this.vista = vista;
         this.manejo = Empresa.getEmpresa();
 
-        //Cargamos Empresa
-        vista.textNombreEmpresa.setText(manejo.getNombre());
-        vista.textDireccionEmpresa.setText(manejo.getDireccion());
+        actializarTabla();
 
         //Deshabilitamos valores
         this.vista.btnEliminar.setEnabled(false);
@@ -70,6 +68,9 @@ public class ControladorEmpresa extends AdaptadorListener{
         String data[][] = manejo.getMatrizPropietarios();
         modelTabla = new DefaultTableModel(data, col);
         vista.tablePropietarios.setModel(modelTabla);
+
+        vista.textNombreEmpresa.setText(manejo.getNombre());
+        vista.textDireccionEmpresa.setText(manejo.getDireccion());
     }
 
     public boolean agregarModificarProp(boolean agregar) {
@@ -91,13 +92,18 @@ public class ControladorEmpresa extends AdaptadorListener{
         vista.textIden.setText(null);
         vista.textNombres.setText(null);
         vista.textApellidos.setText(null);
+        vista.textIden2.setText(null);
+        vista.textProcentaje.setText(null);
+        vista.lblPorcentaje.setText("0%");
 
         vista.comboBoxIden.setEnabled(true);
+        this.vista.textIden.setEnabled(true);
         this.vista.btnEliminar.setEnabled(false);
         this.vista.btnModificarProp.setEnabled(false);
         this.vista.btnMas.setEnabled(false);
         this.vista.textIden2.setEnabled(false);
         this.vista.textProcentaje.setEnabled(false);
+        this.vista.btnRegistrar.setEnabled(true);
     }
 
     public String verificacion(){
@@ -120,13 +126,16 @@ public class ControladorEmpresa extends AdaptadorListener{
             vista.textIden.setText(prop.getIdentificacion());
             vista.textNombres.setText(prop.getNombre());
             vista.textApellidos.setText(prop.getApellido());
+            vista.lblPorcentaje.setText(prop.getPorcentaje() + "%");
     
             vista.comboBoxIden.setEnabled(false);
+            this.vista.textIden.setEnabled(false);
             this.vista.btnEliminar.setEnabled(true);
             this.vista.btnModificarProp.setEnabled(true);
             this.vista.btnMas.setEnabled(true);
             this.vista.textIden2.setEnabled(true);
             this.vista.textProcentaje.setEnabled(true);
+            this.vista.btnRegistrar.setEnabled(false);
 
             return true;
         }
@@ -209,7 +218,10 @@ public class ControladorEmpresa extends AdaptadorListener{
                 if(mod == 0 ) JOptionPane.showMessageDialog(null, "Error no se encontro el Propietario Receptor");
                 if(mod == 1 ) JOptionPane.showMessageDialog(null, "Error no se encontro el Propietario Emisor");
                 if(mod == 2 ) JOptionPane.showMessageDialog(null, "Error el porcentaje es invalido");
-                if(mod == 3 ) JOptionPane.showMessageDialog(null, "Porcentaje cambiado con exito");
+                if(mod == 3 ){
+                    JOptionPane.showMessageDialog(null, "Porcentaje cambiado con exito");
+                    limpiar();
+                }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error al modificar porcentaje invalido");
@@ -229,6 +241,7 @@ public class ControladorEmpresa extends AdaptadorListener{
             manejo.setNombre(vista.textNombreEmpresa.getText());
             vista.textNombreEmpresa.setText(manejo.getNombre());
             vista.textDireccionEmpresa.setText(manejo.getDireccion());
+            JOptionPane.showMessageDialog(null, "Datos Modificados.");
         }
 
         actializarTabla();
