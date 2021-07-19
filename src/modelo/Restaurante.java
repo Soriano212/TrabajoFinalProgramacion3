@@ -6,7 +6,7 @@ public class Restaurante extends Area{
     
     private ArrayList<Mesa> listaMesas;
 
-    public Restaurante(ArrayList<Mesa> listaMesas, String nombre) {
+    public Restaurante( String nombre) {
         super(nombre, 0);
         this.listaMesas = new ArrayList<Mesa>();
     }

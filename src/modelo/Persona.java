@@ -57,6 +57,7 @@ public class Persona implements Serializable{
 
 	}
 
+	//getters y setters
 	public String[] getDatos(){
 
 		String vector[] = new String[3];
@@ -68,7 +69,6 @@ public class Persona implements Serializable{
 
 	}
 
-	//getters y setters
 	public String getApellido() {
 		return apellido;
 	}

@@ -28,4 +28,14 @@ public class Area implements Serializable{
         this.capacidad = capacidad;
     }
     
+    public String[] getDatos(){
+
+		String vector[] = new String[2];
+		vector[0] = this.getNombre();
+		vector[1] = this.getCapacidad() + "";
+
+		return vector;
+
+	}
+    
 }

@@ -7,12 +7,12 @@ public class Cabana extends Area{
     private String ubicacion;
     private boolean disponible;
 
-    public Cabana(String tipo, String ubicacion, boolean disponible, int capacidad, String nombre) {
+    public Cabana(String tipo, String ubicacion, int capacidad, String nombre) {
         super(nombre, capacidad);
         this.tipo = tipoCabana.Piscina;
         setTipo(tipo);
         this.ubicacion = ubicacion;
-        this.disponible = disponible;
+        this.disponible = false;
     }
 
     public String getTipo() {
