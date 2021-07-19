@@ -65,10 +65,10 @@ public class ManejoAreas {
         return null;
     }
 
-    public boolean modificarRestaurante(String nombre){
+    public boolean modificarRestaurante(String nombre, String nuevoNombre){
         Restaurante res = getRestaurante(nombre);
         if(res != null){
-            res.setNombre(nombre);
+            res.setNombre(nuevoNombre);
             return true;
         }
 
@@ -115,10 +115,10 @@ public class ManejoAreas {
         return null;
     }
 
-    public boolean modificarPiscina(String nombre, int capacidad, String tipo){
+    public boolean modificarPiscina(String nombre, int capacidad, String tipo, String nuevoNombre){
         Piscina pisc = getPiscina(nombre);
         if(pisc != null){
-            pisc.setNombre(nombre);
+            pisc.setNombre(nuevoNombre);
             pisc.setCapacidad(capacidad);
             pisc.setTipo(tipo);
             return true;
@@ -167,10 +167,11 @@ public class ManejoAreas {
         return null;
     }
 
-    public boolean modificarCabana(String tipo, String ubicacion, int capacidad, String nombre){
+    public boolean modificarCabana(String tipo, String ubicacion, int capacidad, String nombre, String nuevoNombre){
         Cabana cab = getCabana(nombre);
         if(cab != null){
-            cab.setNombre(nombre);
+            cab.setNombre(nuevoNombre);
+            cab.setUbicacion(ubicacion);
             cab.setCapacidad(capacidad);
             cab.setTipo(tipo);
             cab.getCapacidad();
@@ -193,12 +194,12 @@ public class ManejoAreas {
 
     //Obtener Datos
 
-    public String[][] getMatrizPropietarios(selec tipo){
+    public String[][] getMatrizDatos(selec tipo){
         String matriz[][] =  new String[0][0];
 
         switch(tipo){
         case Cabana: {
-            matriz = new String[listaCabanas.size()][3];
+            matriz = new String[listaCabanas.size()][2];
             int cont = 0;
             for (Area area : listaCabanas) {
                 String[] datos = area.getDatos();
@@ -207,18 +208,18 @@ public class ManejoAreas {
             }
         } break;
         case Piscina: {
-            matriz = new String[listaCabanas.size()][3];
+            matriz = new String[listaPiscinas.size()][2];
             int cont = 0;
-            for (Area area : listaCabanas) {
+            for (Area area : listaPiscinas) {
                 String[] datos = area.getDatos();
                 matriz[cont] = datos;
                 cont ++;
             }
         } break;
         case Restaurante: {
-            matriz = new String[listaCabanas.size()][3];
+            matriz = new String[listaRestaurantes.size()][2];
             int cont = 0;
-            for (Area area : listaCabanas) {
+            for (Area area : listaRestaurantes) {
                 String[] datos = area.getDatos();
                 matriz[cont] = datos;
                 cont ++;

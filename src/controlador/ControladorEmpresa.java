@@ -24,7 +24,7 @@ public class ControladorEmpresa extends AdaptadorListener{
         this.vistaBienvenido = vistaBienvenido;
         this.manejo = Empresa.getEmpresa();
 
-        actializarTabla();
+        actualizarTabla();
 
         //Deshabilitamos valores
         this.vista.btnEliminar.setEnabled(false);
@@ -48,7 +48,7 @@ public class ControladorEmpresa extends AdaptadorListener{
         ControladorTeclado soloTexto = new ControladorTeclado(ControladorTeclado.tipo.Texto);
         soloIden = new ControladorTeclado(ControladorTeclado.tipo.Iden);
 
-        //Pnemos a la escuchas a los TextField
+        //Pnemos a la escucha a los TextField
         this.vista.textApellidos.addKeyListener(soloLetras);
         this.vista.textDireccionEmpresa.addKeyListener(soloTexto);
         this.vista.textIden2.addKeyListener(soloIden);
@@ -64,7 +64,7 @@ public class ControladorEmpresa extends AdaptadorListener{
         vista.comboBoxIden.addFocusListener(this);
     }
 
-    public void actializarTabla() {
+    public void actualizarTabla() {
         manejo = Empresa.getEmpresa();
         String col[] = {"Identificacion", "Nombres", "Apellidos"};
 
@@ -250,7 +250,7 @@ public class ControladorEmpresa extends AdaptadorListener{
             JOptionPane.showMessageDialog(null, "Datos Modificados.");
         }
 
-        actializarTabla();
+        actualizarTabla();
     }
 
     // Mouse Listener

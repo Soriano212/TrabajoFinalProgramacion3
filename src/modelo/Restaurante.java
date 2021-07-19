@@ -11,10 +11,10 @@ public class Restaurante extends Area{
         this.listaMesas = new ArrayList<Mesa>();
     }
 
-    public boolean agregarMesa(int capacidad, boolean ocupada){
+    public boolean agregarMesa(int capacidad){
         int id = 0;
 
-        if(listaMesas.get(0) == null){
+        if(listaMesas.isEmpty()){
             id = 1;
         }
         else{
@@ -22,7 +22,7 @@ public class Restaurante extends Area{
             id ++;
         }
 
-        Mesa mesa = new Mesa(capacidad, id, ocupada);
+        Mesa mesa = new Mesa(capacidad, id, false);
         boolean val = listaMesas.add(mesa);
         if(val) actualizarCapacidad();
 
@@ -58,6 +58,19 @@ public class Restaurante extends Area{
             mesa.setIdMesa(i);
             i ++;
         }
+    }
+
+    public String[][] getMatrizDatos(){
+        String matriz[][] = new String[listaMesas.size()][2];
+
+        int cont = 0;
+        for (Mesa mesa : listaMesas) {
+            String[] datos = mesa.getDatos();
+            matriz[cont] = datos;
+            cont ++;
+        }
+
+        return matriz;
     }
 
 }

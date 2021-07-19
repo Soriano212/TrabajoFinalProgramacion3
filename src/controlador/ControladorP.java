@@ -35,6 +35,7 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 
 		ctrlRegistro = new ControladorRegistro(ven.panelRegistro);
 		ctrlEmpresa = new ControladorEmpresa(ven.panelEmpresa, ven.panelBienvenido);
+		ctrlAdministrar = new ControladorAdministrar(ven.panelAdministrar);
 
 		leerArchivos(nombreOficial);
 
@@ -43,8 +44,9 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 	}
 
 	public void actualizarTablas(){
-		ctrlRegistro.actializarTabla();
-		ctrlEmpresa.actializarTabla();
+		ctrlRegistro.actualizarTabla();
+		ctrlEmpresa.actualizarTabla();
+		ctrlAdministrar.actualizarTabla();
 	}
 
 	public String buscarGuardar(){

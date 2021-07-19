@@ -81,7 +81,7 @@ public class ControladorRegistro extends AdaptadorListener{
 
     }
 
-    public void actializarTabla() {
+    public void actualizarTabla() {
         manejo = ManejoHuespedes.getListas();
         String col[] = {"Identificacion", "Nombres", "Apellidos"};
 
@@ -381,7 +381,7 @@ public class ControladorRegistro extends AdaptadorListener{
             
         }
 
-        actializarTabla();
+        actualizarTabla();
     }
 
     // Mouse Listener

@@ -12,7 +12,7 @@ public class Cabana extends Area{
         this.tipo = tipoCabana.Piscina;
         setTipo(tipo);
         this.ubicacion = ubicacion;
-        this.disponible = false;
+        this.disponible = true;
     }
 
     public String getTipo() {
@@ -26,6 +26,10 @@ public class Cabana extends Area{
 
     public String getUbicacion() {
         return this.ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
     }
 
     public boolean isDisponible() {

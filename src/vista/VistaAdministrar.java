@@ -13,11 +13,28 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class VistaAdministrar extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTable tableAgregar;
-	private JTable table;
+
+	public JTextField textNombre;
+	public JTextField textUbicacion;
+
+	public JTable tableAgregar;
+	public JTable tableMesas;
+
+	public JComboBox<String> comboBoxSeleccion;
+	public JComboBox<String> comboBoxTipo;
+	public JComboBox<String> comboBoxMesaCap;
+	public JComboBox<String> comboBoxCapacidad;
+
+	public JButton btnAgregar;
+	public JButton btnModificar;
+	public JButton btnQuitar;
+	public JButton btnLimpiar;
+	public JButton btnMesaAgregar;
+	public JButton btnMesaLimpiar;
+	public JButton btnMesaQuitar;
+
+	public JLabel lblRestaurante;
+	public JLabel lblMesa;
 
 	/**
 	 * Create the panel.
@@ -44,8 +61,8 @@ public class VistaAdministrar extends JPanel {
 		lblNewLabel_1.setBounds(75, 54, 135, 32);
 		add(lblNewLabel_1);
 		
-		JComboBox comboBoxSeleccion = new JComboBox();
-		comboBoxSeleccion.setModel(new DefaultComboBoxModel(new String[] {"Caba\u00F1a", "Piscina", "Restaurante"}));
+		comboBoxSeleccion = new JComboBox<String>();
+		comboBoxSeleccion.setModel(new DefaultComboBoxModel<String>(new String[] {"Caba\u00F1a", "Piscina", "Restaurante"}));
 		comboBoxSeleccion.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxSeleccion.setBounds(333, 59, 217, 24);
 		add(comboBoxSeleccion);
@@ -55,29 +72,23 @@ public class VistaAdministrar extends JPanel {
 		lblNewLabel_1_1.setBounds(75, 97, 135, 32);
 		add(lblNewLabel_1_1);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField.setColumns(10);
-		textField.setBounds(284, 102, 326, 24);
-		add(textField);
+		textNombre = new JTextField();
+		textNombre.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		textNombre.setColumns(10);
+		textNombre.setBounds(284, 102, 326, 24);
+		add(textNombre);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Capacidad:");
 		lblNewLabel_1_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblNewLabel_1_2.setBounds(75, 139, 135, 32);
 		add(lblNewLabel_1_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField_1.setColumns(10);
-		textField_1.setBounds(284, 144, 326, 24);
-		add(textField_1);
-		
 		JLabel lblNewLabel_1_3 = new JLabel("Tipo:");
 		lblNewLabel_1_3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblNewLabel_1_3.setBounds(75, 182, 135, 32);
 		add(lblNewLabel_1_3);
 		
-		JComboBox comboBoxTipo = new JComboBox();
+		comboBoxTipo = new JComboBox<String>();
 		comboBoxTipo.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxTipo.setBounds(333, 187, 217, 24);
 		add(comboBoxTipo);
@@ -87,15 +98,15 @@ public class VistaAdministrar extends JPanel {
 		lblNewLabel_1_2_1.setBounds(75, 225, 135, 32);
 		add(lblNewLabel_1_2_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField_2.setColumns(10);
-		textField_2.setBounds(284, 230, 326, 24);
-		add(textField_2);
+		textUbicacion = new JTextField();
+		textUbicacion.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		textUbicacion.setColumns(10);
+		textUbicacion.setBounds(284, 230, 326, 24);
+		add(textUbicacion);
 		
-		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar = new JButton("Agregar");
 		btnAgregar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnAgregar.setBounds(75, 271, 153, 23);
+		btnAgregar.setBounds(75, 271, 125, 23);
 		add(btnAgregar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -106,15 +117,15 @@ public class VistaAdministrar extends JPanel {
 		tableAgregar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		scrollPane.setViewportView(tableAgregar);
 		
-		JButton btnModificarAgregar = new JButton("Modificar");
-		btnModificarAgregar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnModificarAgregar.setBounds(269, 271, 153, 23);
-		add(btnModificarAgregar);
+		btnModificar = new JButton("Modificar");
+		btnModificar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnModificar.setBounds(210, 271, 125, 23);
+		add(btnModificar);
 		
-		JButton btnLimpiar = new JButton("Quitar");
-		btnLimpiar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnLimpiar.setBounds(457, 268, 153, 23);
-		add(btnLimpiar);
+		btnQuitar = new JButton("Quitar");
+		btnQuitar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnQuitar.setBounds(345, 271, 125, 23);
+		add(btnQuitar);
 		
 		JLabel lblMesas = new JLabel("MESAS");
 		lblMesas.setHorizontalAlignment(SwingConstants.CENTER);
@@ -135,7 +146,7 @@ public class VistaAdministrar extends JPanel {
 		lblNewLabel_1_4.setBounds(75, 472, 263, 32);
 		add(lblNewLabel_1_4);
 		
-		JLabel lblRestaurante = new JLabel(".....");
+		lblRestaurante = new JLabel(".....");
 		lblRestaurante.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRestaurante.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblRestaurante.setBounds(347, 472, 263, 32);
@@ -151,34 +162,49 @@ public class VistaAdministrar extends JPanel {
 		lblNewLabel_1_1_1.setBounds(75, 515, 135, 32);
 		add(lblNewLabel_1_1_1);
 		
-		JLabel lblMesa = new JLabel(".....");
+		lblMesa = new JLabel(".....");
 		lblMesa.setHorizontalAlignment(SwingConstants.CENTER);
 		lblMesa.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblMesa.setBounds(185, 515, 217, 32);
 		add(lblMesa);
 		
-		JComboBox comboBoxMesaCap = new JComboBox();
-		comboBoxMesaCap.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8"}));
+		comboBoxMesaCap = new JComboBox<String>();
+		comboBoxMesaCap.setModel(new DefaultComboBoxModel<String>(new String[] {"2", "4", "6", "8"}));
 		comboBoxMesaCap.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxMesaCap.setBounds(207, 562, 169, 24);
 		add(comboBoxMesaCap);
 		
-		JButton btnMesaAgregar = new JButton("Agregar");
-		btnMesaAgregar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnMesaAgregar.setBounds(111, 600, 99, 23);
+		btnMesaAgregar = new JButton("Agregar");
+		btnMesaAgregar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		btnMesaAgregar.setBounds(75, 600, 95, 23);
 		add(btnMesaAgregar);
 		
-		JButton btnMesaQuitar = new JButton("Quitar");
-		btnMesaQuitar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnMesaQuitar.setBounds(233, 600, 105, 23);
+		btnMesaQuitar = new JButton("Quitar");
+		btnMesaQuitar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		btnMesaQuitar.setBounds(180, 600, 95, 23);
 		add(btnMesaQuitar);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(398, 510, 263, 113);
 		add(scrollPane_1);
 		
-		table = new JTable();
-		scrollPane_1.setViewportView(table);
+		tableMesas = new JTable();
+		scrollPane_1.setViewportView(tableMesas);
+		
+		comboBoxCapacidad = new JComboBox<String>();
+		comboBoxCapacidad.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		comboBoxCapacidad.setBounds(333, 144, 217, 24);
+		add(comboBoxCapacidad);
+		
+		btnMesaLimpiar = new JButton("Limpiar");
+		btnMesaLimpiar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		btnMesaLimpiar.setBounds(281, 600, 95, 23);
+		add(btnMesaLimpiar);
+		
+		btnLimpiar = new JButton("Limpiar");
+		btnLimpiar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnLimpiar.setBounds(485, 273, 125, 23);
+		add(btnLimpiar);
 
 	}
 }

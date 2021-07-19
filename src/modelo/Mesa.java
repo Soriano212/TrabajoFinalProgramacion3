@@ -42,4 +42,14 @@ public class Mesa implements Serializable{
         this.ocupada = ocupada;
     }
 
+    public String[] getDatos(){
+
+		String vector[] = new String[2];
+		vector[0] = this.getIdMesa() + "";
+		vector[1] = this.getCapacidad() + "";
+
+		return vector;
+
+	}
+
 }
