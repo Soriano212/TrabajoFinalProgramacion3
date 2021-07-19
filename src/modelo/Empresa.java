@@ -57,6 +57,27 @@ public class Empresa {
         return -1;
     }
 
+    public Propietario getPropietario(String iden){
+        int pos = buscar(iden);
+
+        if(pos != -1) return listaPropietarios.get(pos);
+
+        return null;
+    }
+
+    public boolean eliminarPropietario(String iden){
+        int pos = buscar(iden);
+
+        if(pos != -1){
+            if(listaPropietarios.get(pos).getPorcentaje() == 0){
+                listaPropietarios.get(pos);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public boolean modificarPropietario(String nombre, String apellido, String iden){
         int pos = buscar(iden);
         if(pos != -1){

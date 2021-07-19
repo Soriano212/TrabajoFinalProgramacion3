@@ -66,7 +66,7 @@ public class ControladorRegistro extends AdaptadorListener{
         vista.textFieldNumTar.addKeyListener(soloNumeros);
         vista.textFieldProf.addKeyListener(soloLetras);
 
-        //Pone a la escucha de keylistener a los votones de la ventana listar;
+        //Pone a la escucha de keylistener a los textField de la ventana listar;
         vistaLista.textAnio.addKeyListener(soloNumeros);
         vistaLista.textMes.addKeyListener(soloNumeros);
         vistaLista.textDia.addKeyListener(soloNumeros);

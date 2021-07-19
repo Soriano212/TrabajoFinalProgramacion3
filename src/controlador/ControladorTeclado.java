@@ -36,7 +36,8 @@ public class ControladorTeclado implements KeyListener{
             }
             break;
             case Texto: {
-                if( !(eve >= 65 && eve <= 90)&&!(eve >= 97 && eve <= 122)&&!(eve >= 48 && eve <= 57) && (eve != 32) ) {
+                if( !(eve >= 65 && eve <= 90)&&!(eve >= 97 && eve <= 122)&&!(eve >= 48 && eve <= 57) 
+                && (eve != 32) && !(eve >= 44 && eve <= 46)) {
                     e.consume();
                 }
             }
