@@ -229,4 +229,17 @@ public class ManejoAreas {
         return matriz;
     }
 
+    public ArrayList<Restaurante> getListaRestaurantes() {
+        return this.listaRestaurantes;
+    }
+
+    public ArrayList<Piscina> getListaPiscinas() {
+        return this.listaPiscinas;
+    }
+
+    public ArrayList<Cabana> getListaCabanas() {
+        return this.listaCabanas;
+    }
+
+
 }

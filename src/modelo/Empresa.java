@@ -19,7 +19,7 @@ public class Empresa implements Serializable{
         return instancia;
     }
 
-    public void Lectura(ArrayList<Propietario> prop, DatosEmpresa data){
+    public void lectura(ArrayList<Propietario> prop, DatosEmpresa data){
         if(prop != null){
             this.listaPropietarios = prop;
         }

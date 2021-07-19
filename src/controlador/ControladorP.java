@@ -7,12 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-import modelo.Afiliado;
-import modelo.Empresa;
-import modelo.ManejoArchivos;
-import modelo.ManejoHuespedes;
-import modelo.NoAfiliado;
-import modelo.Propietario;
+import modelo.*;
 
 public class ControladorP extends WindowAdapter implements ActionListener{
 
@@ -23,7 +18,10 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 	private ManejoHuespedes manejoHuespedes = ManejoHuespedes.getListas();
 
 	private ControladorEmpresa ctrlEmpresa;
-	private Empresa empresa = Empresa.getEmpresa();
+	private Empresa manejoEmpresa = Empresa.getEmpresa();
+
+	private ControladorAdministrar ctrlAdministrar;
+	private ManejoAreas manejoAreas = ManejoAreas.getManejoAreas();
 	
 	public ControladorP() {
 		ManejoArchivos.crearCarpetaData();
@@ -40,8 +38,8 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 
 		leerArchivos(nombreOficial);
 
-		ven.panelBienvenido.lblNombre.setText(empresa.getNombre().toUpperCase());
-		ven.panelBienvenido.lblDireccion.setText(empresa.getDireccion());
+		ven.panelBienvenido.lblNombre.setText(manejoEmpresa.getNombre().toUpperCase());
+		ven.panelBienvenido.lblDireccion.setText(manejoEmpresa.getDireccion());
 	}
 
 	public void actualizarTablas(){
@@ -78,6 +76,15 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		if(!ManejoArchivos.escribirDatosNoAfiliados(direccion+"NoAfiliados.dat")){
 			JOptionPane.showMessageDialog(null, "Error al guardar NoAfiliados.dat");
 		}
+		if(!ManejoArchivos.escribirDatosCabanas(direccion+"Cabanas.dat")){
+			JOptionPane.showMessageDialog(null, "Error al guardar Cabanas.dat");
+		}
+		if(!ManejoArchivos.escribirDatosPiscinas(direccion+"Piscinas.dat")){
+			JOptionPane.showMessageDialog(null, "Error al guardar Piscinas.dat");
+		}
+		if(!ManejoArchivos.escribirDatosRestaurantes(direccion+"Restaurantes.dat")){
+			JOptionPane.showMessageDialog(null, "Error al guardar Restaurantes.dat");
+		}
 	}
 
 	public void leerArchivos(String nombre){
@@ -87,7 +94,7 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		ArrayList<Propietario> listaPropietarios = ManejoArchivos.leerDatosPropietarios(nombre+"Propietarios.dat");
 		if(listaPropietarios == null) JOptionPane.showMessageDialog(null, "Error al leer Propietarios.dat");
 
-		empresa.Lectura(listaPropietarios, dataEmpresa);
+		manejoEmpresa.lectura(listaPropietarios, dataEmpresa);
 
 		ArrayList<Afiliado> listaAfiliados = ManejoArchivos.leerDatosAfiliados(nombre+"Afiliados.dat");
 		if(listaAfiliados == null) JOptionPane.showMessageDialog(null, "Error al leer Afiliados.dat");
@@ -95,7 +102,18 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		ArrayList<NoAfiliado> listaNoAfiliados = ManejoArchivos.leerDatosNoAfiliados(nombre+"NoAfiliados.dat");
 		if(listaNoAfiliados == null) JOptionPane.showMessageDialog(null, "Error al leer NoAfiliados.dat");
 
-		manejoHuespedes.Lectura(listaAfiliados, listaNoAfiliados);
+		manejoHuespedes.lectura(listaAfiliados, listaNoAfiliados);
+
+		ArrayList<Restaurante> listaRestaurantes = ManejoArchivos.leerDatosRestaurantes(nombre+"Restaurantes.dat");
+		if(listaRestaurantes == null) JOptionPane.showMessageDialog(null, "Error al leer Restaurantes.dat");
+
+		ArrayList<Piscina> listaPiscinas = ManejoArchivos.leerDatosPiscinas(nombre+"Piscinas.dat");
+		if(listaPiscinas == null) JOptionPane.showMessageDialog(null, "Error al leer Piscinas.dat");
+
+		ArrayList<Cabana> listaCabanas = ManejoArchivos.leerDatosCabanas(nombre+"Cabanas.dat");
+		if(listaCabanas == null) JOptionPane.showMessageDialog(null, "Error al leer Cabanas.dat");
+
+		manejoAreas.lectura(listaRestaurantes, listaPiscinas, listaCabanas);
 
 		actualizarTablas();
 	}

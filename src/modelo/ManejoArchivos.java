@@ -223,4 +223,154 @@ public class ManejoArchivos {
 		
 	}
 
+	//Lee el archivo con los datos de las Cabañas.
+    public static ArrayList<Cabana> leerDatosCabanas(String nombre) {
+
+		ArrayList<Cabana> lista = null;
+
+		try {
+			
+			ObjectInputStream archivo = null;
+			File path = new File(nombre);
+			
+			if(path.exists()) {
+				archivo = new ObjectInputStream(new FileInputStream(nombre));
+				lista = (ArrayList<Cabana>)archivo.readObject();
+				archivo.close();
+			}
+			
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Leer");
+			return null;
+		}
+        catch(ClassNotFoundException ex) {
+            System.out.println("Error Class Leer");
+			return null;
+		}
+		
+		return lista;
+		
+	}
+	
+	//Escribe en el archivo con los datos de las Cabañas.
+	public static boolean escribirDatosCabanas(String nombre) {
+
+		crearCarpetaData();
+		ManejoAreas area = ManejoAreas.getManejoAreas();
+		try {
+			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream(nombre));
+			archivo.writeObject(area.getListaCabanas());
+			archivo.flush();
+			archivo.close();
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Escribir");
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+	//Lee el archivo con los datos de las Piscinas.
+	public static ArrayList<Piscina> leerDatosPiscinas(String nombre) {
+
+		ArrayList<Piscina> lista = null;
+
+		try {
+			
+			ObjectInputStream archivo = null;
+			File path = new File(nombre);
+			
+			if(path.exists()) {
+				archivo = new ObjectInputStream(new FileInputStream(nombre));
+				lista = (ArrayList<Piscina>)archivo.readObject();
+				archivo.close();
+			}
+			
+		}
+		catch(IOException ex) {
+			System.out.println("Error IO Leer");
+			return null;
+		}
+		catch(ClassNotFoundException ex) {
+			System.out.println("Error Class Leer");
+			return null;
+		}
+		
+		return lista;
+		
+	}
+
+	//Escribe en el archivo con los datos de las Piscinas.
+	public static boolean escribirDatosPiscinas(String nombre) {
+
+		crearCarpetaData();
+		ManejoAreas area = ManejoAreas.getManejoAreas();
+		try {
+			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream(nombre));
+			archivo.writeObject(area.getListaPiscinas());
+			archivo.flush();
+			archivo.close();
+		}
+		catch(IOException ex) {
+			System.out.println("Error IO Escribir");
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+	//Lee el archivo con los datos de los Restaurantes.
+    public static ArrayList<Restaurante> leerDatosRestaurantes(String nombre) {
+
+		ArrayList<Restaurante> lista = null;
+
+		try {
+			
+			ObjectInputStream archivo = null;
+			File path = new File(nombre);
+			
+			if(path.exists()) {
+				archivo = new ObjectInputStream(new FileInputStream(nombre));
+				lista = (ArrayList<Restaurante>)archivo.readObject();
+				archivo.close();
+			}
+			
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Leer");
+			return null;
+		}
+        catch(ClassNotFoundException ex) {
+            System.out.println("Error Class Leer");
+			return null;
+		}
+		
+		return lista;
+		
+	}
+	
+	//Escribe en el archivo con los datos de los Restaurantes.
+	public static boolean escribirDatosRestaurantes(String nombre) {
+
+		crearCarpetaData();
+		ManejoAreas area = ManejoAreas.getManejoAreas();
+		try {
+			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream(nombre));
+			archivo.writeObject(area.getListaRestaurantes());
+			archivo.flush();
+			archivo.close();
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Escribir");
+			return false;
+		}
+		
+		return true;
+		
+	}
+
 }

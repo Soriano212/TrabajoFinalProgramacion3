@@ -17,7 +17,7 @@ public class ManejoHuespedes implements Serializable{
         return instancia;
     }
 
-    public void Lectura(ArrayList<Afiliado> afil, ArrayList<NoAfiliado> noafil){
+    public void lectura(ArrayList<Afiliado> afil, ArrayList<NoAfiliado> noafil){
         if(afil != null){
             this.listaAfiliados = afil;
         }
