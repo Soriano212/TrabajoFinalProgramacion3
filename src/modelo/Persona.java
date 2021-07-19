@@ -57,6 +57,17 @@ public class Persona implements Serializable{
 
 	}
 
+	public String[] getDatos(){
+
+		String vector[] = new String[3];
+		vector[0] = this.getIdentificacion();
+		vector[1] = this.getNombre();
+		vector[2] = this.getApellido();
+
+		return vector;
+
+	}
+
 	//getters y setters
 	public String getApellido() {
 		return apellido;

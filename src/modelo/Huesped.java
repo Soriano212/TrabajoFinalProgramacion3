@@ -63,17 +63,6 @@ public class Huesped extends Persona{
 		this.direccionOrigen = direccionOrigen;
 	}
 
-	public String[] getDatos(){
-
-		String vector[] = new String[3];
-		vector[0] = this.getIdentificacion();
-		vector[1] = this.getNombre();
-		vector[2] = this.getApellido();
-
-		return vector;
-
-	}
-
 	public void setTarjeta(String ban, String num, LocalDate fecha){
 
 		tarjeta.setBancoEmisor(ban);
@@ -85,6 +74,5 @@ public class Huesped extends Persona{
 	public TarjetaCredito getTarjeta() {
 		return this.tarjeta;
 	}
-
 
 }

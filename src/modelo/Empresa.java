@@ -3,7 +3,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Empresa implements Serializable {
+public class Empresa {
     
     private static Empresa instancia = null;
 
@@ -19,14 +19,20 @@ public class Empresa implements Serializable {
         return instancia;
     }
 
-    public void Lectura(ArrayList<Propietario> prop){
+    public void Lectura(ArrayList<Propietario> prop, DatosEmpresa data){
         if(prop != null){
             this.listaPropietarios = prop;
+        }
+        if(data != null){
+            this.nombre = data.getNom();
+            this.direccion = data.getDir();
         }
     }
 
     private Empresa(){
         this.listaPropietarios  = new ArrayList<Propietario>();
+        this.direccion = "Playas - Ecuador";
+        this.nombre = "Recreaciones CIA. LTDA.";
     }
 
     public boolean agregarPropietario(String iden, String nombre, String apellido){
@@ -104,6 +110,43 @@ public class Empresa implements Serializable {
 
     public ArrayList<Propietario> getListaPropietarios() {
         return this.listaPropietarios;
+    }
+
+    public String[][] getMatrizPropietarios(){
+
+        String matriz[][] = new String[listaPropietarios.size()][3];
+        int cont = 0;
+
+        for (Propietario prop : listaPropietarios) {
+            String[] datos = prop.getDatos();
+            matriz[cont] = datos;
+            cont ++;
+        }
+
+        return matriz;
+    }
+
+    public DatosEmpresa getDatosEmpresa(){
+        return new DatosEmpresa();
+    }
+
+    public class DatosEmpresa implements Serializable {
+        protected String nom;
+        protected String dir;
+        
+        public DatosEmpresa (){
+            nom = nombre;
+            dir = direccion;
+        }
+
+        public String getNom(){
+            return nom;
+        }
+
+        public String getDir(){
+            return dir;
+        }
+        
     }
 
 }

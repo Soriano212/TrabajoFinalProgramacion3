@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import modelo.Empresa.DatosEmpresa;
+
 public class ManejoArchivos {
 
     public static void crearCarpetaData(){
@@ -109,6 +111,106 @@ public class ManejoArchivos {
 		try {
 			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream(nombre));
 			archivo.writeObject(huespedes.getListaNoAfiliados());
+			archivo.flush();
+			archivo.close();
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Escribir");
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+	//Lee el archivo con los datos de los Propietarios.
+    public static ArrayList<Propietario> leerDatosPropietarios(String nombre) {
+
+		ArrayList<Propietario> lista = null;
+
+		try {
+			
+			ObjectInputStream archivo = null;
+			File path = new File(nombre);
+			
+			if(path.exists()) {
+				archivo = new ObjectInputStream(new FileInputStream(nombre));
+				lista = (ArrayList<Propietario>)archivo.readObject();
+				archivo.close();
+			}
+			
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Leer");
+			return null;
+		}
+        catch(ClassNotFoundException ex) {
+            System.out.println("Error Class Leer");
+			return null;
+		}
+		
+		return lista;
+		
+	}
+	
+	//Escribe en el archivo con los datos de los Propietarios.
+	public static boolean escribirDatosPropietarios(String nombre) {
+
+		crearCarpetaData();
+		Empresa empresa = Empresa.getEmpresa();
+		try {
+			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream(nombre));
+			archivo.writeObject(empresa.getListaPropietarios());
+			archivo.flush();
+			archivo.close();
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Escribir");
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+	//Lee el archivo con los datos de la Empresa.
+    public static DatosEmpresa leerDatosEmpresa(String nombre) {
+
+		DatosEmpresa data = null;
+
+		try {
+			
+			ObjectInputStream archivo = null;
+			File path = new File(nombre);
+			
+			if(path.exists()) {
+				archivo = new ObjectInputStream(new FileInputStream(nombre));
+				data = (DatosEmpresa)archivo.readObject();
+				archivo.close();
+			}
+			
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Leer");
+			return null;
+		}
+        catch(ClassNotFoundException ex) {
+            System.out.println("Error Class Leer");
+			return null;
+		}
+		
+		return data;
+		
+	}
+	
+	//Escribe en el archivo con los datos de la Empresa.
+	public static boolean escribirDatosEmpresa(String nombre) {
+
+		crearCarpetaData();
+		DatosEmpresa data = Empresa.getEmpresa().getDatosEmpresa();
+		try {
+			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream(nombre));
+			archivo.writeObject(data);
 			archivo.flush();
 			archivo.close();
 		}
