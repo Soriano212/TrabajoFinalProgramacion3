@@ -84,7 +84,7 @@ public class VistaServicios extends JPanel {
 		add(textCapacidad);
 		textCapacidad.setColumns(10);
 		
-		btnPedir = new JButton("Agregar");
+		btnPedir = new JButton("Pedir");
 		btnPedir.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnPedir.setBounds(90, 433, 153, 23);
 		add(btnPedir);

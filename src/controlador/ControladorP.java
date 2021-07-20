@@ -22,6 +22,9 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 
 	private ControladorAdministrar ctrlAdministrar;
 	private ManejoAreas manejoAreas = ManejoAreas.getManejoAreas();
+
+	private ControladorServicios ctrlServicios;
+	private ManejoServicios manejoServicios = ManejoServicios.getManejoServicios();
 	
 	public ControladorP() {
 		ManejoArchivos.crearCarpetaData();
@@ -36,6 +39,7 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		ctrlRegistro = new ControladorRegistro(ven.panelRegistro);
 		ctrlEmpresa = new ControladorEmpresa(ven.panelEmpresa, ven.panelBienvenido);
 		ctrlAdministrar = new ControladorAdministrar(ven.panelAdministrar);
+		ctrlServicios = new ControladorServicios(ven.panelServicios);
 
 		leerArchivos(nombreOficial);
 
@@ -47,6 +51,7 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		ctrlRegistro.actualizarTabla();
 		ctrlEmpresa.actualizarTabla();
 		ctrlAdministrar.actualizarTabla();
+		ctrlServicios.actualizarTabla();
 	}
 
 	public String buscarGuardar(){
@@ -87,6 +92,9 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		if(!ManejoArchivos.escribirDatosRestaurantes(direccion+"Restaurantes.dat")){
 			JOptionPane.showMessageDialog(null, "Error al guardar Restaurantes.dat");
 		}
+		if(!ManejoArchivos.escribirDatosServicios(direccion+"Servicios.dat")){
+			JOptionPane.showMessageDialog(null, "Error al guardar Servicios.dat");
+		}
 	}
 
 	public void leerArchivos(String nombre){
@@ -116,6 +124,11 @@ public class ControladorP extends WindowAdapter implements ActionListener{
 		if(listaCabanas == null) JOptionPane.showMessageDialog(null, "Error al leer Cabanas.dat");
 
 		manejoAreas.lectura(listaRestaurantes, listaPiscinas, listaCabanas);
+
+		ManejoServicios.DatosServicios dataServicios = ManejoArchivos.leerDatosServicios(nombre+"Servicios.dat");
+		if(dataServicios == null) JOptionPane.showMessageDialog(null, "Error al leer Servicios.dat");
+
+		manejoServicios.lectura(dataServicios);
 
 		actualizarTablas();
 	}

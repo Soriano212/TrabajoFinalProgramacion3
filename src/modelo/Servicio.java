@@ -65,8 +65,7 @@ public class Servicio implements Serializable{
 		String vector[] = new String[3];
 		vector[0] = this.getNombre();
 		vector[1] = this.getCapacidad() + "";
-        if(getDisponible()) vector[2] = "Si";
-        if(!getDisponible()) vector[2] = "No";
+        vector[2] = this.getEnUso() + "";
 
 		return vector;
 

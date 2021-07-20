@@ -51,7 +51,7 @@ public class ManejoServicios implements Serializable{
 
     }
 
-    public String[][] getMatrizDatos(int tipo){
+    public String[][] getMatrizDatos(){
 
         String matriz[][] = new String[4][3];
 

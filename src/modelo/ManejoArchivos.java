@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import modelo.Empresa.DatosEmpresa;
+import modelo.ManejoServicios.DatosServicios;
 
 public class ManejoArchivos {
 
@@ -372,5 +373,56 @@ public class ManejoArchivos {
 		return true;
 		
 	}
+
+	//Lee el archivo con los datos de Servicios.
+    public static DatosServicios leerDatosServicios(String nombre) {
+
+		DatosServicios data = null;
+
+		try {
+			
+			ObjectInputStream archivo = null;
+			File path = new File(nombre);
+			
+			if(path.exists()) {
+				archivo = new ObjectInputStream(new FileInputStream(nombre));
+				data = (DatosServicios)archivo.readObject();
+				archivo.close();
+			}
+			
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Leer");
+			return null;
+		}
+        catch(ClassNotFoundException ex) {
+            System.out.println("Error Class Leer");
+			return null;
+		}
+		
+		return data;
+		
+	}
+	
+	//Escribe en el archivo con los datos de Servicios.
+	public static boolean escribirDatosServicios(String nombre) {
+
+		crearCarpetaData();
+		DatosServicios data = ManejoServicios.getManejoServicios().getDatos();
+		try {
+			ObjectOutputStream archivo = new ObjectOutputStream(new FileOutputStream(nombre));
+			archivo.writeObject(data);
+			archivo.flush();
+			archivo.close();
+		}
+		catch(IOException ex) {
+            System.out.println("Error IO Escribir");
+			return false;
+		}
+		
+		return true;
+		
+	}
+
 
 }
