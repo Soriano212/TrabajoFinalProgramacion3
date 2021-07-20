@@ -9,6 +9,7 @@ import javax.swing.event.PopupMenuEvent;
 
 import modelo.Cabana;
 import modelo.ManejoAreas;
+import modelo.Mesa;
 import modelo.Piscina;
 import modelo.Restaurante;
 import vista.VistaAdministrar;
@@ -177,11 +178,6 @@ public class ControladorAdministrar  extends AdaptadorListener{
             this.vista.comboBoxMesaCap.setEnabled(true);
             this.vista.tableMesas.setVisible(true);
 
-            if(res.getCapacidad() == 0){
-                this.vista.lblMesa.setText("1");
-            }else{
-                this.vista.lblMesa.setText(""+(res.getCapacidad()+1));
-            }
             this.vista.lblRestaurante.setText(res.getNombre());
 
             actualizarTablaMesas();
@@ -323,6 +319,29 @@ public class ControladorAdministrar  extends AdaptadorListener{
         String data[][] = res.getMatrizDatos();
         DefaultTableModel modelTabla = new DefaultTableModel(data, col);
         vista.tableMesas.setModel(modelTabla);
+
+        if(res.getCapacidad() == 0){
+            this.vista.lblMesa.setText("1");
+        }else{
+            this.vista.lblMesa.setText(""+(res.getCapacidad()+1));
+        }
+    }
+
+    private boolean cargarMesa(int id){
+        Mesa mesa = res.getMesa(id);
+
+        if(mesa != null){
+            vista.lblMesa.setText(mesa.getIdMesa()+"");
+            vista.comboBoxMesaCap.setSelectedItem(mesa.getCapacidad()+"");
+    
+            this.vista.btnMesaQuitar.setEnabled(true);
+
+            this.vista.btnMesaAgregar.setEnabled(false);
+
+            return true;
+        }
+
+        return false;
     }
 
     @Override
@@ -416,7 +435,10 @@ public class ControladorAdministrar  extends AdaptadorListener{
             cargar((String)vista.tableAgregar.getValueAt(seleccion, 0));
         }
         if(e.getSource() == vista.tableMesas){
-            
+            int seleccion = vista.tableMesas.getSelectedRow();
+            limpiarMesa();
+            int id = Integer.parseInt((String)vista.tableMesas.getValueAt(seleccion, 0));
+            cargarMesa(id);
         }
     }
 
@@ -452,6 +474,7 @@ public class ControladorAdministrar  extends AdaptadorListener{
         }
         actualizarTabla();
         limpiar();
+        limpiarMesa();
     }
 
 }

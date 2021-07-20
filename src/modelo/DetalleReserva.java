@@ -5,12 +5,10 @@ import java.time.*;
 
 public class DetalleReserva implements Serializable{
 
+    private LocalTime horaInicial;
+    private LocalTime horaFinal;
 
-
-    private LocalDate horaInicial;
-    private LocalDate horaFinal;
-
-    public DetalleReserva(LocalDate horaInicial,LocalDate horaFinal){//Constructor
+    public DetalleReserva(LocalTime horaInicial, LocalTime horaFinal){//Constructor
 
         this.horaInicial = horaInicial;
         this.horaFinal = horaFinal;
@@ -21,25 +19,21 @@ public class DetalleReserva implements Serializable{
     }
 
     //getters y setters
-    public void setHoraInicial(LocalDate fec){
+    public void setHoraInicial(LocalTime fec){
         this.horaInicial = fec;
     }
 
-    public LocalDate getHoraInicial() {
+    public LocalTime getHoraInicial() {
         return this.horaInicial;
     }
 
-    public void setHoraFinal(LocalDate fec){
+    public void setHoraFinal(LocalTime fec){
         this.horaFinal = fec;
     }
 
-    public LocalDate getHoraFinal() {
+    public LocalTime getHoraFinal() {
         return this.horaFinal;
     }
-
-
-
-
 
 
 }

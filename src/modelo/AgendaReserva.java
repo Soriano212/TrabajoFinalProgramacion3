@@ -6,58 +6,37 @@ import java.util.ArrayList;
 
 public class AgendaReserva implements Serializable{
 
-
-
-    private static Reserva instancia = null;
-
-    private String dia;
-    private String mes;
-    private String anio;
+    private LocalDate fecha;
 
    
+    public AgendaReserva(LocalDate fecha) {//Constructor
 
+		
 
-    public static AgendaReserva getReserva(){
-        if(instancia == null){
-
-            instancia = new Reserva();
-
-        }
-        return instancia;
-    }
-    public AgendaReserva( LocalDate fechaNacimiento, ) {//Constructor
-
-		super(identificacion, apellido, nombre);
-
-		this.dia = fechaNacimiento;
-		this.mes = telefonoCelular;
-		this.anio = direccionOrigen;
-		this.tarjeta = new TarjetaCredito();
+		this.fecha = fecha;
+		this.detalle = new DetalleReserva();
 
 	}
-   
-     public void setDia(String dia,String mes,String anio,) {
-        this.dia = dia;
+
+
+    public void setDetalle(LocalTime ini, LocalTime fin){
+
+		detalle.horaInicial(ini);
+		detalle.horaFinal(fin);
+
+	}
+    public DetalleReserva getDetalle() {
+		return this.detalle;
+	}
+
+
+     public void setDia(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
-    public String getDia() {
-        return this.dia;
+    public LocalDate getDia() {
+        return this.fecha;
     }
 
-    public void setMes(String mes) {
-        this.mes = mes;
-    }
-
-    public String getMes() {
-        return this.mes;
-    }
-
-    public void setAnio(String anio) {
-        this.anio = anio;
-    }
-
-    public String getAnio() {
-        return this.anio;
-    }
 
 }

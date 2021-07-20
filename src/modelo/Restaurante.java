@@ -48,6 +48,13 @@ public class Restaurante extends Area{
         else return false;
     }
 
+    public Mesa getMesa(int id){
+        if(id > 0 && id < listaMesas.size()){
+            return listaMesas.get(id-1);
+        }
+        else return null;
+    }
+
     public void actualizarCapacidad(){
         this.setCapacidad(listaMesas.size());
     }
