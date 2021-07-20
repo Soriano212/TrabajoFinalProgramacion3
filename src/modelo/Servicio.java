@@ -4,31 +4,38 @@ import java.io.Serializable;
 
 public class Servicio implements Serializable{
 
-    private int id;
+    private String nombre;
     private int capacidad;
+    private int enUso;
     private boolean disponible;
     private ManejoAgenda manejoAgenda;
 
-    public Servicio(int capacidad, int id) {
-        this.id = id;
+    public Servicio(String nombre, int capacidad) {
+        this.nombre = nombre;
         this.capacidad = capacidad;
-        this.disponible = false;
+        this.disponible = true;
+        this.enUso = 0;
+        manejoAgenda = new ManejoAgenda();
     }
 
-    public int getId() {
-        return this.id;
+    public String getNombre() {
+        return this.nombre;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getCapacidad() {
         return this.capacidad;
     }
 
-    public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+    public boolean setCapacidad(int capacidad) {
+        if(capacidad >=0 && capacidad>getEnUso()){
+            this.capacidad = capacidad;
+            return true;
+        }
+        return false;
     }
 
     public boolean getDisponible() {
@@ -39,11 +46,29 @@ public class Servicio implements Serializable{
         this.disponible = disponible;
     }
     
+    public int getEnUso() {
+        return this.enUso;
+    }
+
+    public boolean setEnUso(int enUso) {
+        if(enUso >=0 && enUso<=getCapacidad()){
+            this.enUso = enUso;
+            return true;
+        }
+        return false;
+    }
+
+    public int getRestantes(){
+        return getCapacidad() - getEnUso();
+    }
+
     public String[] getDatos(){
 
-		String vector[] = new String[2];
-		vector[0] = this.getId() + "";
+		String vector[] = new String[3];
+		vector[0] = this.getNombre();
 		vector[1] = this.getCapacidad() + "";
+        if(getDisponible()) vector[2] = "Si";
+        if(!getDisponible()) vector[2] = "No";
 
 		return vector;
 
