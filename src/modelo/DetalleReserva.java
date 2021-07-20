@@ -15,30 +15,50 @@ public class DetalleReserva implements Serializable{
 
     }
     public DetalleReserva(){//Constructor vacio
-
     }
 
     //getters y setters
-    public void setHoraInicial(LocalTime fec){
-        this.horaInicial = fec;
+
+    public void setHoraInicial(String hora){
+        this.horaInicial = LocalTime.parse(hora);
+    }
+
+    public void setHoraInicial(LocalTime hora){
+        this.horaInicial = hora;
     }
 
     public LocalTime getHoraInicial() {
         return this.horaInicial;
     }
 
-    public void setHoraFinal(LocalTime fec){
-        this.horaFinal = fec;
+    public void setHoraFinal(String hora){
+        this.horaFinal = LocalTime.parse(hora);
+    }
+
+    public void setHoraFinal(LocalTime hora){
+        this.horaFinal = hora;
     }
 
     public LocalTime getHoraFinal() {
         return this.horaFinal;
     }
-    public LocalTime[] getTiempo(){
 
-		LocalTime vector[] = new LocalTime[2];
-		vector[0] = this.getHoraInicial();
-		vector[1] = this.getHoraFinal();
+    public boolean entreHoras(LocalTime hora){
+        
+        if(horaInicial.isAfter(hora) && horaFinal.isBefore(hora)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    public String[] getDatos(){
+
+		String vector[] = new String[2];
+		vector[0] = this.horaInicial.toString();
+		vector[1] = this.horaFinal.toString();
 
 		return vector;
 
