@@ -11,8 +11,6 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 public class VentanaListaAgenda extends JFrame {
 

@@ -20,6 +20,7 @@ public class Ventana{
 	public VistaEmpresa panelEmpresa;
 	public VistaAdministrar panelAdministrar;
 	public VistaFacturas panelFacturas;
+	public VistaAgendar panelAgendar;
 	
 	public JMenuItem mntmGuardar;
 	public JMenuItem mntmGuardarCopia;
@@ -118,6 +119,9 @@ public class Ventana{
 		
 		panelFacturas = new VistaFacturas();
 		tabbedPane.addTab("Facturas", null, panelFacturas, null);
+		
+		panelAgendar = new VistaAgendar();
+		tabbedPane.addTab("Agendar", null, panelAgendar, null);
 		
 	}
 }

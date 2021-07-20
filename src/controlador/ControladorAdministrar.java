@@ -91,7 +91,7 @@ public class ControladorAdministrar  extends AdaptadorListener{
         String retorno = "Corregir :";
 
         if(vista.textNombre.getText().length() < 3) retorno = retorno + " Nombre.";
-        if(vista.comboBoxSeleccion.equals("Cabaña")){
+        if(vista.comboBoxSeleccion.getSelectedItem().equals("Cabaña")){
             if(vista.textUbicacion.getText().length() < 3) retorno = retorno + " Ubicacion.";
         }
 

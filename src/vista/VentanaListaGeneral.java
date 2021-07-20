@@ -11,13 +11,12 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 
 public class VentanaListaGeneral extends JFrame {
 
 	private JPanel contentPane;
 	public JTable table;
+	public JLabel lblLista;
 
 	/**
 	 * Launch the application.
@@ -48,7 +47,7 @@ public class VentanaListaGeneral extends JFrame {
 		setTitle("Lista");
 		setResizable(false);
 		
-		JLabel lblLista = new JLabel("LISTA");
+		lblLista = new JLabel("LISTA");
 		lblLista.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLista.setForeground(Color.BLUE);
 		lblLista.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 20));
