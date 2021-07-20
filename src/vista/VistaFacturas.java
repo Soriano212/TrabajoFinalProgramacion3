@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class VistaFacturas extends JPanel {
-	private JTextField textField;
 
 	/**
 	 * Create the panel.
@@ -37,20 +36,9 @@ public class VistaFacturas extends JPanel {
 		lblNewLabel_1.setBounds(70, 54, 135, 32);
 		add(lblNewLabel_1);
 		
-		JComboBox comboBoxIden = new JComboBox();
-		comboBoxIden.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		comboBoxIden.setBounds(279, 59, 115, 24);
-		add(comboBoxIden);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField.setColumns(10);
-		textField.setBounds(404, 59, 109, 24);
-		add(textField);
-		
-		JButton btnVer = new JButton("Ver");
+		JButton btnVer = new JButton("Listar");
 		btnVer.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnVer.setBounds(523, 60, 82, 23);
+		btnVer.setBounds(564, 60, 92, 23);
 		add(btnVer);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Nombres:");
@@ -136,9 +124,9 @@ public class VistaFacturas extends JPanel {
 		lblReservarCabaa_1_1_1.setBounds(10, 359, 659, 32);
 		add(lblReservarCabaa_1_1_1);
 		
-		JLabel lblNewLabel_1_1_3 = new JLabel("Total a Pagar:");
+		JLabel lblNewLabel_1_1_3 = new JLabel("Hospedaje:");
 		lblNewLabel_1_1_3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblNewLabel_1_1_3.setBounds(70, 521, 199, 32);
+		lblNewLabel_1_1_3.setBounds(70, 511, 199, 32);
 		add(lblNewLabel_1_1_3);
 		
 		JLabel lblNewLabel_1_1_3_1_1_1 = new JLabel("Aplica Descuento");
@@ -146,11 +134,6 @@ public class VistaFacturas extends JPanel {
 		lblNewLabel_1_1_3_1_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblNewLabel_1_1_3_1_1_1.setBounds(439, 452, 199, 32);
 		add(lblNewLabel_1_1_3_1_1_1);
-		
-		JButton btnPagar = new JButton("Pagar");
-		btnPagar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnPagar.setBounds(265, 591, 153, 23);
-		add(btnPagar);
 		
 		JLabel lblNewLabel_1_1_3_1 = new JLabel("Restaurante:");
 		lblNewLabel_1_1_3_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
@@ -162,29 +145,46 @@ public class VistaFacturas extends JPanel {
 		lblNewLabel_1_1_3_2.setBounds(70, 425, 199, 32);
 		add(lblNewLabel_1_1_3_2);
 		
-		JLabel lblCaducidad_1 = new JLabel(".....");
-		lblCaducidad_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaducidad_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblCaducidad_1.setBounds(201, 425, 222, 32);
-		add(lblCaducidad_1);
+		JLabel lblServicios = new JLabel(".....");
+		lblServicios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblServicios.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblServicios.setBounds(201, 425, 222, 32);
+		add(lblServicios);
 		
-		JLabel lblCaducidad_1_1 = new JLabel(".....");
-		lblCaducidad_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaducidad_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblCaducidad_1_1.setBounds(201, 464, 222, 32);
-		add(lblCaducidad_1_1);
+		JLabel lblRestaurante = new JLabel(".....");
+		lblRestaurante.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRestaurante.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblRestaurante.setBounds(201, 464, 222, 32);
+		add(lblRestaurante);
 		
-		JLabel lblCaducidad_1_2 = new JLabel(".....");
-		lblCaducidad_1_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaducidad_1_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblCaducidad_1_2.setBounds(201, 511, 222, 32);
-		add(lblCaducidad_1_2);
+		JLabel lblHospedaje = new JLabel(".....");
+		lblHospedaje.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHospedaje.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblHospedaje.setBounds(201, 511, 222, 32);
+		add(lblHospedaje);
 		
-		JLabel lblCaducidad_1_3 = new JLabel(".....");
-		lblCaducidad_1_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCaducidad_1_3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblCaducidad_1_3.setBounds(421, 495, 222, 32);
-		add(lblCaducidad_1_3);
+		JLabel lblDescuento = new JLabel(".....");
+		lblDescuento.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDescuento.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblDescuento.setBounds(421, 495, 222, 32);
+		add(lblDescuento);
+		
+		JLabel lblIden = new JLabel(".....");
+		lblIden.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIden.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblIden.setBounds(279, 54, 326, 32);
+		add(lblIden);
+		
+		JLabel lblTotalPagar = new JLabel(".....");
+		lblTotalPagar.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTotalPagar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblTotalPagar.setBounds(201, 576, 222, 32);
+		add(lblTotalPagar);
+		
+		JLabel lblNewLabel_1_1_3_3 = new JLabel("Total a Pagar:");
+		lblNewLabel_1_1_3_3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblNewLabel_1_1_3_3.setBounds(70, 576, 199, 32);
+		add(lblNewLabel_1_1_3_3);
 
 	}
 

@@ -6,8 +6,6 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -15,16 +13,21 @@ import javax.swing.JTextField;
 public class VistaServicios extends JPanel {
 
 	public JTable tableSeleccion;
+	public JTable tablePedidos;
+
 	public JButton btnActualizar;
 	public JButton btnLimpiar;
-	private JTextField textCapacidad;
-	private JButton btnPedir;
-	private JButton btnQuitar;
-	private JLabel lblIden_1;
+	public JButton btnPedir;
+	public JButton btnQuitar;
+
+	public JTextField textCapacidad;
+	public JTextField textCantidad;
+
+	public JLabel lblSeleccion;
+
 	private JLabel lblNewLabel_1_1;
-	private JTextField textCantidad;
 	private JScrollPane scrollPane_1;
-	private JTable tablePedidos;
+	
 
 	/**
 	 * Create the panel.
@@ -91,11 +94,11 @@ public class VistaServicios extends JPanel {
 		btnQuitar.setBounds(91, 527, 153, 23);
 		add(btnQuitar);
 		
-		lblIden_1 = new JLabel(".....");
-		lblIden_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIden_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblIden_1.setBounds(338, 64, 194, 32);
-		add(lblIden_1);
+		lblSeleccion = new JLabel(".....");
+		lblSeleccion.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSeleccion.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblSeleccion.setBounds(338, 64, 194, 32);
+		add(lblSeleccion);
 		
 		lblNewLabel_1_1 = new JLabel("Cantidad:");
 		lblNewLabel_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
