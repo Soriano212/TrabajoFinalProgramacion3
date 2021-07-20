@@ -62,7 +62,7 @@ public class VistaAdministrar extends JPanel {
 		add(lblNewLabel_1);
 		
 		comboBoxSeleccion = new JComboBox<String>();
-		comboBoxSeleccion.setModel(new DefaultComboBoxModel<String>(new String[] {"Caba\u00F1a", "Piscina", "Restaurante"}));
+		comboBoxSeleccion.setModel(new DefaultComboBoxModel(new String[] {"Caba\u00F1a", "Piscina", "Restaurante"}));
 		comboBoxSeleccion.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxSeleccion.setBounds(333, 59, 217, 24);
 		add(comboBoxSeleccion);

@@ -14,15 +14,10 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaRestaurante extends JPanel {
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTable table;
-	private JTable table_1;
+	private JTextField textNombre;
+	private JTextField textAprellido;
+	private JTable tableRestaurante;
+	private JTable tableMesas;
 
 	/**
 	 * Create the panel.
@@ -30,156 +25,58 @@ public class VistaRestaurante extends JPanel {
 	public VistaRestaurante() {
 		setLayout(null);
 		
-		JLabel lblReservarMesa = new JLabel("RESERVAR MESA");
-		lblReservarMesa.setBounds(10, 11, 659, 32);
-		lblReservarMesa.setHorizontalAlignment(SwingConstants.CENTER);
-		lblReservarMesa.setForeground(Color.BLUE);
-		lblReservarMesa.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 20));
-		add(lblReservarMesa);
-		
-		JLabel lblReservarCabaa_1 = new JLabel("_______________________________________________________________");
-		lblReservarCabaa_1.setBounds(10, 21, 659, 32);
-		lblReservarCabaa_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblReservarCabaa_1.setForeground(Color.BLUE);
-		lblReservarCabaa_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 20));
-		add(lblReservarCabaa_1);
-		
-		JLabel lblNewLabel_1_2_1_1 = new JLabel("Fecha de Reserva:");
-		lblNewLabel_1_2_1_1.setBounds(72, 132, 199, 32);
-		lblNewLabel_1_2_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		add(lblNewLabel_1_2_1_1);
-		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Mes:");
-		lblNewLabel_1_1_1_1.setBounds(361, 471, 41, 32);
-		lblNewLabel_1_1_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		add(lblNewLabel_1_1_1_1);
-		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Dia:");
-		lblNewLabel_1_1_1.setBounds(361, 433, 41, 32);
-		lblNewLabel_1_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		add(lblNewLabel_1_1_1);
-		
-		textField = new JTextField();
-		textField.setBounds(422, 437, 50, 24);
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField.setColumns(10);
-		add(textField);
-		
-		textField_1 = new JTextField();
-		textField_1.setBounds(422, 475, 50, 24);
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField_1.setColumns(10);
-		add(textField_1);
-		
-		textField_2 = new JTextField();
-		textField_2.setBounds(422, 509, 50, 24);
-		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField_2.setColumns(10);
-		add(textField_2);
-		
-		JLabel lblNewLabel_1_1_1_2 = new JLabel("A\u00F1o:");
-		lblNewLabel_1_1_1_2.setBounds(361, 505, 41, 32);
-		lblNewLabel_1_1_1_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		add(lblNewLabel_1_1_1_2);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Identificacion Cliente:");
-		lblNewLabel_1_1.setBounds(72, 54, 199, 32);
-		lblNewLabel_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		add(lblNewLabel_1_1);
-		
-		textField_3 = new JTextField();
-		textField_3.setBounds(281, 59, 326, 24);
-		textField_3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField_3.setColumns(10);
-		add(textField_3);
-		
-		JButton btnRevisar = new JButton("Comprobar");
-		btnRevisar.setBounds(267, 97, 153, 23);
-		btnRevisar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		add(btnRevisar);
-		
-		JLabel lblNewLabel_1_2 = new JLabel("Horario:");
-		lblNewLabel_1_2.setBounds(73, 168, 199, 32);
-		lblNewLabel_1_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		add(lblNewLabel_1_2);
-		
-		JComboBox comboBoxIden = new JComboBox();
-		comboBoxIden.setBounds(349, 173, 204, 24);
-		comboBoxIden.setModel(new DefaultComboBoxModel(new String[] {"Desayuno", "Almuerzo", "Merienda"}));
-		comboBoxIden.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		add(comboBoxIden);
-		
-		JLabel lblColaRestaurante = new JLabel("COLA RESTAURANTE");
-		lblColaRestaurante.setBounds(10, 245, 659, 32);
+		JLabel lblColaRestaurante = new JLabel("RESTAURANTE");
+		lblColaRestaurante.setBounds(10, 11, 659, 32);
 		lblColaRestaurante.setHorizontalAlignment(SwingConstants.CENTER);
 		lblColaRestaurante.setForeground(Color.BLUE);
 		lblColaRestaurante.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 20));
 		add(lblColaRestaurante);
 		
 		JLabel lblReservarCabaa_1_1 = new JLabel("_______________________________________________________________");
-		lblReservarCabaa_1_1.setBounds(10, 255, 659, 32);
+		lblReservarCabaa_1_1.setBounds(10, 21, 659, 32);
 		lblReservarCabaa_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblReservarCabaa_1_1.setForeground(Color.BLUE);
 		lblReservarCabaa_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 20));
 		add(lblReservarCabaa_1_1);
 		
-		JButton btnRevisar_1 = new JButton("Comprobar");
-		btnRevisar_1.setBounds(267, 211, 153, 23);
-		btnRevisar_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		add(btnRevisar_1);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(281, 293, 210, 24);
-		textField_4.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField_4.setColumns(10);
-		add(textField_4);
-		
 		JLabel lblNewLabel_1_1_2 = new JLabel("Identificacion Cliente:");
-		lblNewLabel_1_1_2.setBounds(72, 288, 199, 32);
+		lblNewLabel_1_1_2.setBounds(58, 70, 199, 32);
 		lblNewLabel_1_1_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		add(lblNewLabel_1_1_2);
 		
 		JLabel lblNewLabel_1_1_3 = new JLabel("Nombres:");
-		lblNewLabel_1_1_3.setBounds(44, 328, 199, 32);
+		lblNewLabel_1_1_3.setBounds(44, 113, 115, 32);
 		lblNewLabel_1_1_3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		add(lblNewLabel_1_1_3);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(147, 333, 163, 24);
-		textField_5.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField_5.setColumns(10);
-		add(textField_5);
+		textNombre = new JTextField();
+		textNombre.setBounds(147, 118, 101, 24);
+		textNombre.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		textNombre.setColumns(10);
+		add(textNombre);
 		
 		JLabel lblNewLabel_1_1_3_1 = new JLabel("Apellidos:");
-		lblNewLabel_1_1_3_1.setBounds(368, 328, 199, 32);
+		lblNewLabel_1_1_3_1.setBounds(276, 113, 199, 32);
 		lblNewLabel_1_1_3_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		add(lblNewLabel_1_1_3_1);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(471, 333, 163, 24);
-		textField_6.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		textField_6.setColumns(10);
-		add(textField_6);
+		textAprellido = new JTextField();
+		textAprellido.setBounds(379, 118, 131, 24);
+		textAprellido.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		textAprellido.setColumns(10);
+		add(textAprellido);
 		
 		JButton btnAgregarCola = new JButton("Agregar A Cola");
-		btnAgregarCola.setBounds(256, 368, 164, 23);
+		btnAgregarCola.setBounds(132, 167, 164, 23);
 		btnAgregarCola.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		add(btnAgregarCola);
 		
-		JButton btnCargar = new JButton("Cargar");
-		btnCargar.setBounds(501, 296, 123, 23);
-		btnCargar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		add(btnCargar);
-		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(132, 402, 163, 234);
+		scrollPane.setBounds(58, 269, 256, 234);
 		add(scrollPane);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		tableRestaurante = new JTable();
+		tableRestaurante.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null},
 			},
@@ -187,16 +84,16 @@ public class VistaRestaurante extends JPanel {
 				"Cola Restaurante"
 			}
 		));
-		table.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
-		scrollPane.setViewportView(table);
+		tableRestaurante.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
+		scrollPane.setViewportView(tableRestaurante);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(506, 402, 163, 234);
+		scrollPane_1.setBounds(346, 270, 274, 234);
 		add(scrollPane_1);
 		
-		table_1 = new JTable();
-		table_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
-		table_1.setModel(new DefaultTableModel(
+		tableMesas = new JTable();
+		tableMesas.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 12));
+		tableMesas.setModel(new DefaultTableModel(
 			new Object[][] {
 				{"#1", "Reservado"},
 				{"#2", "Reservado"},
@@ -209,29 +106,73 @@ public class VistaRestaurante extends JPanel {
 				"# Mesa", "Estado"
 			}
 		));
-		scrollPane_1.setViewportView(table_1);
+		scrollPane_1.setViewportView(tableMesas);
 		
-		JComboBox comboBoxIden_1 = new JComboBox();
-		comboBoxIden_1.setModel(new DefaultComboBoxModel(new String[] {"Desayuno", "Almuerzo", "Merienda"}));
-		comboBoxIden_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		comboBoxIden_1.setBounds(361, 544, 111, 24);
-		add(comboBoxIden_1);
+		JLabel lblIden2 = new JLabel(".....");
+		lblIden2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIden2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblIden2.setBounds(263, 70, 194, 32);
+		add(lblIden2);
 		
-		JButton btnCargar_1 = new JButton("Cargar");
-		btnCargar_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnCargar_1.setBounds(361, 581, 111, 23);
-		add(btnCargar_1);
+		JButton btnListar2 = new JButton("Listar");
+		btnListar2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnListar2.setBounds(467, 76, 153, 23);
+		add(btnListar2);
 		
-		JComboBox comboBoxIden_1_1 = new JComboBox();
-		comboBoxIden_1_1.setModel(new DefaultComboBoxModel(new String[] {"Desayuno", "Almuerzo", "Merienda"}));
-		comboBoxIden_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		comboBoxIden_1_1.setBounds(11, 475, 111, 24);
-		add(comboBoxIden_1_1);
+		JLabel lblNewLabel_1_1_3_1_1 = new JLabel("Cant:");
+		lblNewLabel_1_1_3_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblNewLabel_1_1_3_1_1.setBounds(524, 113, 58, 32);
+		add(lblNewLabel_1_1_3_1_1);
 		
-		JButton btnCargar_1_1 = new JButton("Pasar");
-		btnCargar_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnCargar_1_1.setBounds(10, 512, 111, 23);
-		add(btnCargar_1_1);
+		JComboBox comboBoxCant = new JComboBox();
+		comboBoxCant.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8"}));
+		comboBoxCant.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		comboBoxCant.setBounds(578, 118, 70, 24);
+		add(comboBoxCant);
+		
+		JButton btnRestaurante = new JButton("Restaurante");
+		btnRestaurante.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnRestaurante.setBounds(360, 167, 164, 23);
+		add(btnRestaurante);
+		
+		JLabel lblRestaurante = new JLabel(".....");
+		lblRestaurante.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRestaurante.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblRestaurante.setBounds(233, 201, 194, 32);
+		add(lblRestaurante);
+		
+		JLabel lblNewLabel_1_1_3_2 = new JLabel("Nombre:");
+		lblNewLabel_1_1_3_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblNewLabel_1_1_3_2.setBounds(132, 528, 115, 32);
+		add(lblNewLabel_1_1_3_2);
+		
+		JLabel lblNewLabel_1_1_3_2_1 = new JLabel("Hora Inicio:");
+		lblNewLabel_1_1_3_2_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblNewLabel_1_1_3_2_1.setBounds(44, 581, 115, 32);
+		add(lblNewLabel_1_1_3_2_1);
+		
+		JLabel lblNewLabel_1_1_3_2_1_1 = new JLabel("Hora Fin:");
+		lblNewLabel_1_1_3_2_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblNewLabel_1_1_3_2_1_1.setBounds(360, 581, 115, 32);
+		add(lblNewLabel_1_1_3_2_1_1);
+		
+		JLabel lblNombre = new JLabel(".....");
+		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNombre.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblNombre.setBounds(263, 528, 248, 32);
+		add(lblNombre);
+		
+		JLabel lblHoraInicio = new JLabel(".....");
+		lblHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHoraInicio.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblHoraInicio.setBounds(157, 581, 175, 32);
+		add(lblHoraInicio);
+		
+		JLabel lblHoraFin = new JLabel(".....");
+		lblHoraFin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblHoraFin.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblHoraFin.setBounds(445, 581, 175, 32);
+		add(lblHoraFin);
 
 	}
 }

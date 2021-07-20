@@ -56,6 +56,8 @@ public class Mesa implements Serializable{
 
 	}
 
-
+    public ManejoAgenda getManejoAgenda() {
+        return this.manejoAgenda;
+    }
 
 }
