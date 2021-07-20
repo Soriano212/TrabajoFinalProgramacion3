@@ -32,6 +32,7 @@ public class Restaurante extends Area{
     public boolean eliminarMesa(int id){
         if(id > 0 && id < listaMesas.size()){
             listaMesas.remove(id-1);
+            actualizarIDs();
             actualizarCapacidad();
             return true;
         }
@@ -49,7 +50,7 @@ public class Restaurante extends Area{
     }
 
     public Mesa getMesa(int id){
-        if(id > 0 && id < listaMesas.size()){
+        if(id > 0 && id <= listaMesas.size()){
             return listaMesas.get(id-1);
         }
         else return null;

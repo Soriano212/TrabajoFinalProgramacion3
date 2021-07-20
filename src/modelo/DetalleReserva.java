@@ -34,6 +34,14 @@ public class DetalleReserva implements Serializable{
     public LocalTime getHoraFinal() {
         return this.horaFinal;
     }
+    public LocalTime[] getTiempo(){
 
+		LocalTime vector[] = new LocalTime[2];
+		vector[0] = this.getHoraInicial();
+		vector[1] = this.getHoraFinal();
+
+		return vector;
+
+	}
 
 }

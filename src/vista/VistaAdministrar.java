@@ -189,6 +189,7 @@ public class VistaAdministrar extends JPanel {
 		add(scrollPane_1);
 		
 		tableMesas = new JTable();
+		tableMesas.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 14));
 		scrollPane_1.setViewportView(tableMesas);
 		
 		comboBoxCapacidad = new JComboBox<String>();

@@ -311,6 +311,7 @@ public class ControladorAdministrar  extends AdaptadorListener{
         this.vista.btnMesaAgregar.setEnabled(true);
         this.vista.btnMesaQuitar.setEnabled(false);
         this.vista.comboBoxMesaCap.setSelectedIndex(0);
+        this.vista.comboBoxMesaCap.setEnabled(true);
     }
 
     private void actualizarTablaMesas(){
@@ -333,6 +334,7 @@ public class ControladorAdministrar  extends AdaptadorListener{
         if(mesa != null){
             vista.lblMesa.setText(mesa.getIdMesa()+"");
             vista.comboBoxMesaCap.setSelectedItem(mesa.getCapacidad()+"");
+            vista.comboBoxMesaCap.setEnabled(false);
     
             this.vista.btnMesaQuitar.setEnabled(true);
 
@@ -412,10 +414,11 @@ public class ControladorAdministrar  extends AdaptadorListener{
             limpiarMesa();
             actualizarTablaMesas();
         }
-        if(e.getSource() == vista.btnMesaQuitar){
+        if(e.getSource() == vista.btnMesaQuitar){ 
             int id = Integer.parseInt(vista.lblMesa.getText());
             if(res.eliminarMesa(id)){
                 JOptionPane.showMessageDialog(null, "Mesa eliminada.");
+                limpiarMesa();
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error al eliminar Mesa.");
@@ -470,11 +473,12 @@ public class ControladorAdministrar  extends AdaptadorListener{
                 vista.textUbicacion.setText(null);
                 vista.comboBoxCapacidad.setModel(new DefaultComboBoxModel<String>(new String[] {}));
                 vista.comboBoxTipo.setModel(new DefaultComboBoxModel<String>(new String[] {}));
+
+                limpiarMesa();
             }
         }
         actualizarTabla();
         limpiar();
-        limpiarMesa();
     }
 
 }
