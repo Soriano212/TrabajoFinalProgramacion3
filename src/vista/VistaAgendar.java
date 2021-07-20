@@ -13,11 +13,24 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 
 public class VistaAgendar extends JPanel {
-	private JTextField textDia;
-	private JTextField textMes;
-	private JTextField textAnio;
-	private JTable tableSeleccion;
-	private JTable tableMesas;
+
+	public JTextField textDia;
+	public JTextField textMes;
+	public JTextField textAnio;
+
+	public JTable tableSeleccion;
+	public JTable tableMesas;
+
+	public JComboBox<String> comboBoxHoraInicio;
+	public JComboBox<String> comboBoxHoraFin;
+	public JComboBox<String> comboBoxMinutosInicio;
+	public JComboBox<String> comboBoxMinutosFin;
+	public JComboBox<String> comboBoxSeleccion;
+
+	public JButton btnAgregar;
+	public JButton btnQuitar;
+	public JButton btnListarAgenda;
+	public JButton btnListar;
 
 	/**
 	 * Create the panel.
@@ -43,7 +56,7 @@ public class VistaAgendar extends JPanel {
 		lblIden.setBounds(263, 441, 194, 32);
 		add(lblIden);
 		
-		JButton btnListar = new JButton("Listar");
+		btnListar = new JButton("Listar");
 		btnListar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnListar.setBounds(463, 447, 153, 23);
 		add(btnListar);
@@ -106,8 +119,8 @@ public class VistaAgendar extends JPanel {
 		lblNewLabel_1_1_1_3_1.setBounds(273, 520, 50, 32);
 		add(lblNewLabel_1_1_1_3_1);
 		
-		JComboBox comboBoxHoraInicio = new JComboBox();
-		comboBoxHoraInicio.setModel(new DefaultComboBoxModel(new String[] {"6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"}));
+		comboBoxHoraInicio = new JComboBox<String>();
+		comboBoxHoraInicio.setModel(new DefaultComboBoxModel<String>(new String[] {"6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"}));
 		comboBoxHoraInicio.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxHoraInicio.setBounds(332, 525, 70, 24);
 		add(comboBoxHoraInicio);
@@ -117,8 +130,8 @@ public class VistaAgendar extends JPanel {
 		lblNewLabel_1_1_1_3_1_1.setBounds(422, 520, 77, 32);
 		add(lblNewLabel_1_1_1_3_1_1);
 		
-		JComboBox comboBoxMinutosInicio = new JComboBox();
-		comboBoxMinutosInicio.setModel(new DefaultComboBoxModel(new String[] {"00", "10", "20", "30", "40", "50"}));
+		comboBoxMinutosInicio = new JComboBox<String>();
+		comboBoxMinutosInicio.setModel(new DefaultComboBoxModel<String>(new String[] {"00", "10", "20", "30", "40", "50"}));
 		comboBoxMinutosInicio.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxMinutosInicio.setBounds(493, 525, 70, 24);
 		add(comboBoxMinutosInicio);
@@ -133,8 +146,8 @@ public class VistaAgendar extends JPanel {
 		lblNewLabel_1_1_1_3_1_2.setBounds(273, 549, 50, 32);
 		add(lblNewLabel_1_1_1_3_1_2);
 		
-		JComboBox comboBoxHoraFin = new JComboBox();
-		comboBoxHoraFin.setModel(new DefaultComboBoxModel(new String[] {"6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"}));
+		comboBoxHoraFin = new JComboBox<String>();
+		comboBoxHoraFin.setModel(new DefaultComboBoxModel<String>(new String[] {"6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"}));
 		comboBoxHoraFin.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxHoraFin.setBounds(332, 554, 70, 24);
 		add(comboBoxHoraFin);
@@ -144,23 +157,23 @@ public class VistaAgendar extends JPanel {
 		lblNewLabel_1_1_1_3_1_1_1.setBounds(422, 549, 77, 32);
 		add(lblNewLabel_1_1_1_3_1_1_1);
 		
-		JComboBox comboBoxMinutosFin = new JComboBox();
-		comboBoxMinutosFin.setModel(new DefaultComboBoxModel(new String[] {"00", "10", "20", "30", "40", "50"}));
+		comboBoxMinutosFin = new JComboBox<String>();
+		comboBoxMinutosFin.setModel(new DefaultComboBoxModel<String>(new String[] {"00", "10", "20", "30", "40", "50"}));
 		comboBoxMinutosFin.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxMinutosFin.setBounds(493, 554, 70, 24);
 		add(comboBoxMinutosFin);
 		
-		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar = new JButton("Agregar");
 		btnAgregar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnAgregar.setBounds(64, 592, 153, 23);
 		add(btnAgregar);
 		
-		JButton btnQuitar = new JButton("Quitar");
+		btnQuitar = new JButton("Quitar");
 		btnQuitar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnQuitar.setBounds(251, 592, 153, 23);
 		add(btnQuitar);
 		
-		JButton btnListarAgenda = new JButton("Agenda");
+		btnListarAgenda = new JButton("Agenda");
 		btnListarAgenda.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnListarAgenda.setBounds(436, 592, 153, 23);
 		add(btnListarAgenda);
@@ -170,8 +183,8 @@ public class VistaAgendar extends JPanel {
 		lblNewLabel_1.setBounds(93, 74, 135, 32);
 		add(lblNewLabel_1);
 		
-		JComboBox<String> comboBoxSeleccion = new JComboBox<String>();
-		comboBoxSeleccion.setModel(new DefaultComboBoxModel(new String[] {"Piscina", "Restaurante", "Parasol", "Toalla", "Spa", "Traslado"}));
+		comboBoxSeleccion = new JComboBox<String>();
+		comboBoxSeleccion.setModel(new DefaultComboBoxModel<String>(new String[] {"Piscina", "Restaurante", "Parasol", "Toalla", "Spa", "Traslado"}));
 		comboBoxSeleccion.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxSeleccion.setBounds(351, 79, 217, 24);
 		add(comboBoxSeleccion);
@@ -180,11 +193,6 @@ public class VistaAgendar extends JPanel {
 		lblNewLabel_1_3.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblNewLabel_1_3.setBounds(69, -132, 135, 32);
 		add(lblNewLabel_1_3);
-		
-		JComboBox<String> comboBoxSeleccion_1 = new JComboBox<String>();
-		comboBoxSeleccion_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		comboBoxSeleccion_1.setBounds(327, -127, 217, 24);
-		add(comboBoxSeleccion_1);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(69, 119, 535, 156);

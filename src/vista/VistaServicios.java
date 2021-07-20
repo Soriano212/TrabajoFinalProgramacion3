@@ -5,16 +5,24 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.SwingConstants;
-import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 public class VistaServicios extends JPanel {
-	private JTable tableSeleccion;
+
+	public JTable tableSeleccion;
+
+	public JButton btnAgregar;
+	public JButton btnQuitar;
+	public JButton btnLimpiar;
+
+	public JLabel lblID;
+
+	public JComboBox<String> comboBoxSeleccion;
+	public JComboBox<String> comboBoxCapacidad;
 
 	/**
 	 * Create the panel.
@@ -41,23 +49,23 @@ public class VistaServicios extends JPanel {
 		lblNewLabel_1.setBounds(96, 77, 135, 32);
 		add(lblNewLabel_1);
 		
-		JComboBox<String> comboBoxSeleccion = new JComboBox<String>();
-		comboBoxSeleccion.setModel(new DefaultComboBoxModel(new String[] {"Parasol", "Toalla", "Spa", "Traslado"}));
+		comboBoxSeleccion = new JComboBox<String>();
+		comboBoxSeleccion.setModel(new DefaultComboBoxModel<String>(new String[] {"Parasol", "Toalla", "Spa", "Traslado"}));
 		comboBoxSeleccion.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxSeleccion.setBounds(354, 82, 217, 24);
 		add(comboBoxSeleccion);
 		
-		JButton btnAgregar = new JButton("Agregar");
+		btnAgregar = new JButton("Agregar");
 		btnAgregar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnAgregar.setBounds(127, 217, 125, 23);
 		add(btnAgregar);
 		
-		JButton btnQuitar = new JButton("Quitar");
+		btnQuitar = new JButton("Quitar");
 		btnQuitar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnQuitar.setBounds(281, 217, 125, 23);
 		add(btnQuitar);
 		
-		JButton btnLimpiar = new JButton("Limpiar");
+		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnLimpiar.setBounds(428, 217, 125, 23);
 		add(btnLimpiar);
@@ -74,7 +82,7 @@ public class VistaServicios extends JPanel {
 		lblNewLabel_1_1_1.setBounds(96, 163, 135, 32);
 		add(lblNewLabel_1_1_1);
 		
-		JLabel lblID = new JLabel(".....");
+		lblID = new JLabel(".....");
 		lblID.setHorizontalAlignment(SwingConstants.CENTER);
 		lblID.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblID.setBounds(354, 163, 217, 32);
@@ -85,7 +93,7 @@ public class VistaServicios extends JPanel {
 		lblNewLabel_1_2.setBounds(96, 120, 135, 32);
 		add(lblNewLabel_1_2);
 		
-		JComboBox<String> comboBoxCapacidad = new JComboBox<String>();
+		comboBoxCapacidad = new JComboBox<String>();
 		comboBoxCapacidad.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxCapacidad.setBounds(354, 125, 217, 24);
 		add(comboBoxCapacidad);

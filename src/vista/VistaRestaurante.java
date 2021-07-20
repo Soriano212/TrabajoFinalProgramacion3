@@ -14,10 +14,24 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class VistaRestaurante extends JPanel {
-	private JTextField textNombre;
-	private JTextField textAprellido;
-	private JTable tableRestaurante;
-	private JTable tableMesas;
+
+	public JTextField textNombre;
+	public JTextField textAprellido;
+
+	public JTable tableRestaurante;
+	public JTable tableMesas;
+
+	public JButton btnAgregarCola;
+	public JButton btnRestaurante;
+	public JButton btnListar;
+
+	public JComboBox<String> comboBoxCant;
+
+	public JLabel lblIden;
+	public JLabel lblRestaurante;
+	public JLabel lblNombre;
+	public JLabel lblHoraInicio;
+	public JLabel lblHoraFin;
 
 	/**
 	 * Create the panel.
@@ -66,7 +80,7 @@ public class VistaRestaurante extends JPanel {
 		textAprellido.setColumns(10);
 		add(textAprellido);
 		
-		JButton btnAgregarCola = new JButton("Agregar A Cola");
+		btnAgregarCola = new JButton("Agregar A Cola");
 		btnAgregarCola.setBounds(132, 167, 164, 23);
 		btnAgregarCola.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		add(btnAgregarCola);
@@ -108,34 +122,34 @@ public class VistaRestaurante extends JPanel {
 		));
 		scrollPane_1.setViewportView(tableMesas);
 		
-		JLabel lblIden2 = new JLabel(".....");
-		lblIden2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblIden2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblIden2.setBounds(263, 70, 194, 32);
-		add(lblIden2);
+		lblIden = new JLabel(".....");
+		lblIden.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIden.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblIden.setBounds(263, 70, 194, 32);
+		add(lblIden);
 		
-		JButton btnListar2 = new JButton("Listar");
-		btnListar2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnListar2.setBounds(467, 76, 153, 23);
-		add(btnListar2);
+		btnListar = new JButton("Listar");
+		btnListar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnListar.setBounds(467, 76, 153, 23);
+		add(btnListar);
 		
 		JLabel lblNewLabel_1_1_3_1_1 = new JLabel("Cant:");
 		lblNewLabel_1_1_3_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblNewLabel_1_1_3_1_1.setBounds(524, 113, 58, 32);
 		add(lblNewLabel_1_1_3_1_1);
 		
-		JComboBox comboBoxCant = new JComboBox();
-		comboBoxCant.setModel(new DefaultComboBoxModel(new String[] {"2", "4", "6", "8"}));
+		comboBoxCant = new JComboBox<String>();
+		comboBoxCant.setModel(new DefaultComboBoxModel<String>(new String[] {"2", "4", "6", "8"}));
 		comboBoxCant.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		comboBoxCant.setBounds(578, 118, 70, 24);
 		add(comboBoxCant);
 		
-		JButton btnRestaurante = new JButton("Restaurante");
+		btnRestaurante = new JButton("Restaurante");
 		btnRestaurante.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		btnRestaurante.setBounds(360, 167, 164, 23);
 		add(btnRestaurante);
 		
-		JLabel lblRestaurante = new JLabel(".....");
+		lblRestaurante = new JLabel(".....");
 		lblRestaurante.setHorizontalAlignment(SwingConstants.CENTER);
 		lblRestaurante.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblRestaurante.setBounds(233, 201, 194, 32);
@@ -156,19 +170,19 @@ public class VistaRestaurante extends JPanel {
 		lblNewLabel_1_1_3_2_1_1.setBounds(360, 581, 115, 32);
 		add(lblNewLabel_1_1_3_2_1_1);
 		
-		JLabel lblNombre = new JLabel(".....");
+		lblNombre = new JLabel(".....");
 		lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNombre.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblNombre.setBounds(263, 528, 248, 32);
 		add(lblNombre);
 		
-		JLabel lblHoraInicio = new JLabel(".....");
+		lblHoraInicio = new JLabel(".....");
 		lblHoraInicio.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHoraInicio.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblHoraInicio.setBounds(157, 581, 175, 32);
 		add(lblHoraInicio);
 		
-		JLabel lblHoraFin = new JLabel(".....");
+		lblHoraFin = new JLabel(".....");
 		lblHoraFin.setHorizontalAlignment(SwingConstants.CENTER);
 		lblHoraFin.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
 		lblHoraFin.setBounds(445, 581, 175, 32);

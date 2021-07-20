@@ -79,6 +79,7 @@ public class ControladorAdministrar  extends AdaptadorListener{
         String col[] = {"Nombres", "Capacidad"};
         ManejoAreas.selec seleccion = obtenerTipo();
 
+        //System.out.println(seleccion);
         if(seleccion != null){
             String data[][] = manejo.getMatrizDatos(seleccion);
             modelTabla = new DefaultTableModel(data, col);
