@@ -8,14 +8,12 @@ public class Servicio implements Serializable{
     private int capacidad;
     private int enUso;
     private boolean disponible;
-    private ManejoAgenda manejoAgenda;
 
     public Servicio(String nombre, int capacidad) {
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.disponible = true;
         this.enUso = 0;
-        manejoAgenda = new ManejoAgenda();
     }
 
     public String getNombre() {
@@ -73,9 +71,5 @@ public class Servicio implements Serializable{
 		return vector;
 
 	}
-
-    public ManejoAgenda getManejoAgenda() {
-        return this.manejoAgenda;
-    }
 
 }

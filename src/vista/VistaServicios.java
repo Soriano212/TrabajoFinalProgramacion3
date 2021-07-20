@@ -10,19 +10,21 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 public class VistaServicios extends JPanel {
 
 	public JTable tableSeleccion;
-
-	public JButton btnAgregar;
-	public JButton btnQuitar;
+	public JButton btnActualizar;
 	public JButton btnLimpiar;
-
-	public JLabel lblID;
-
-	public JComboBox<String> comboBoxSeleccion;
-	public JComboBox<String> comboBoxCapacidad;
+	private JTextField textCapacidad;
+	private JButton btnPedir;
+	private JButton btnQuitar;
+	private JLabel lblIden_1;
+	private JLabel lblNewLabel_1_1;
+	private JTextField textCantidad;
+	private JScrollPane scrollPane_1;
+	private JTable tablePedidos;
 
 	/**
 	 * Create the panel.
@@ -46,57 +48,73 @@ public class VistaServicios extends JPanel {
 		
 		JLabel lblNewLabel_1 = new JLabel("Seleccion:");
 		lblNewLabel_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblNewLabel_1.setBounds(96, 77, 135, 32);
+		lblNewLabel_1.setBounds(91, 64, 135, 32);
 		add(lblNewLabel_1);
 		
-		comboBoxSeleccion = new JComboBox<String>();
-		comboBoxSeleccion.setModel(new DefaultComboBoxModel<String>(new String[] {"Parasol", "Toalla", "Spa", "Traslado"}));
-		comboBoxSeleccion.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		comboBoxSeleccion.setBounds(354, 82, 217, 24);
-		add(comboBoxSeleccion);
-		
-		btnAgregar = new JButton("Agregar");
-		btnAgregar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnAgregar.setBounds(127, 217, 125, 23);
-		add(btnAgregar);
-		
-		btnQuitar = new JButton("Quitar");
-		btnQuitar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnQuitar.setBounds(281, 217, 125, 23);
-		add(btnQuitar);
+		btnActualizar = new JButton("Actualizar");
+		btnActualizar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnActualizar.setBounds(199, 162, 125, 23);
+		add(btnActualizar);
 		
 		btnLimpiar = new JButton("Limpiar");
 		btnLimpiar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		btnLimpiar.setBounds(428, 217, 125, 23);
+		btnLimpiar.setBounds(346, 162, 125, 23);
 		add(btnLimpiar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(63, 251, 535, 204);
+		scrollPane.setBounds(67, 196, 535, 113);
 		add(scrollPane);
 		
 		tableSeleccion = new JTable();
+		tableSeleccion.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
 		scrollPane.setViewportView(tableSeleccion);
-		
-		JLabel lblNewLabel_1_1_1 = new JLabel("ID:");
-		lblNewLabel_1_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblNewLabel_1_1_1.setBounds(96, 163, 135, 32);
-		add(lblNewLabel_1_1_1);
-		
-		lblID = new JLabel(".....");
-		lblID.setHorizontalAlignment(SwingConstants.CENTER);
-		lblID.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblID.setBounds(354, 163, 217, 32);
-		add(lblID);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("Capacidad:");
 		lblNewLabel_1_2.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
-		lblNewLabel_1_2.setBounds(96, 120, 135, 32);
+		lblNewLabel_1_2.setBounds(91, 107, 135, 32);
 		add(lblNewLabel_1_2);
 		
-		comboBoxCapacidad = new JComboBox<String>();
-		comboBoxCapacidad.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
-		comboBoxCapacidad.setBounds(354, 125, 217, 24);
-		add(comboBoxCapacidad);
+		textCapacidad = new JTextField();
+		textCapacidad.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		textCapacidad.setHorizontalAlignment(SwingConstants.CENTER);
+		textCapacidad.setBounds(296, 116, 302, 20);
+		add(textCapacidad);
+		textCapacidad.setColumns(10);
+		
+		btnPedir = new JButton("Agregar");
+		btnPedir.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnPedir.setBounds(90, 433, 153, 23);
+		add(btnPedir);
+		
+		btnQuitar = new JButton("Quitar");
+		btnQuitar.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		btnQuitar.setBounds(91, 527, 153, 23);
+		add(btnQuitar);
+		
+		lblIden_1 = new JLabel(".....");
+		lblIden_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblIden_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblIden_1.setBounds(338, 64, 194, 32);
+		add(lblIden_1);
+		
+		lblNewLabel_1_1 = new JLabel("Cantidad:");
+		lblNewLabel_1_1.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 18));
+		lblNewLabel_1_1.setBounds(27, 391, 135, 32);
+		add(lblNewLabel_1_1);
+		
+		textCantidad = new JTextField();
+		textCantidad.setHorizontalAlignment(SwingConstants.CENTER);
+		textCantidad.setFont(new Font("Arial Rounded MT Bold", Font.PLAIN, 16));
+		textCantidad.setColumns(10);
+		textCantidad.setBounds(151, 398, 158, 20);
+		add(textCantidad);
+		
+		scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(346, 345, 231, 271);
+		add(scrollPane_1);
+		
+		tablePedidos = new JTable();
+		scrollPane_1.setViewportView(tablePedidos);
 
 	}
 }
